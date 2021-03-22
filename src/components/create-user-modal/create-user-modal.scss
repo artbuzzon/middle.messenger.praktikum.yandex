@@ -1,0 +1,18 @@
+@use "src/styles/mixins" as *;
+@use "src/styles/vars" as *;
+
+.create-user-modal-mask {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  background-color: $maskBackgroundColor;
+  height: 100%;
+  width: 100%;
+}
+
+.create-user-modal {
+  @include place-center;
+  border: $borderStyle;
+  background-color: white;
+  padding: 2rem;
+}

@@ -1,0 +1,32 @@
+{
+  "name": "chat",
+  "version": "1.0.0",
+  "description": "",
+  "engines": {
+    "node": "12"
+  },
+  "main": "index.js",
+  "scripts": {
+    "dev": "./node_modules/.bin/parcel static/*.html",
+    "build": "./node_modules/.bin/parcel build static/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/artbuzzon/chat.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/artbuzzon/chat/issues"
+  },
+  "homepage": "https://github.com/artbuzzon/chat#readme",
+  "devDependencies": {
+    "express": "^4.17.1",
+    "parcel-bundler": "^1.12.5"
+  },
+  "dependencies": {
+    "hogan.js": "^3.0.2",
+    "sass": "^1.32.8"
+  }
+}

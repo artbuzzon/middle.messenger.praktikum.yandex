@@ -1,0 +1,70 @@
+@use './src/styles/vars' as *;
+
+
+@mixin box {
+  padding: 1rem;
+  border: $borderStyle;
+  white-space: nowrap;
+  background-color: white;
+}
+
+@mixin place-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin avatar {
+  width: 4.7rem;
+  height: 4.7rem;
+  background-color: lightgray;
+  border: $borderStyle;
+  position: relative;
+  &::after {
+    content: "👤";
+    position: absolute;
+    color: black;
+    font-size: 4.7rem;
+    @include place-center
+  }
+}
+
+@mixin registration {
+  @include place-center;
+  display: flex;
+  min-width: 36rem;
+  flex-direction: column;
+  padding: 2rem;
+  border: $borderStyle;
+
+  &__title {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  &__auth-btn {
+    text-align: center;
+    margin-top: 1.5rem;
+  }
+}
+
+@mixin profile {
+  @include registration;
+
+  &__content-avatar {
+    @include avatar;
+    margin-top: 1rem;
+  }
+
+  &__content-field {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+
+    &__center {
+      display: flex;
+      justify-content: center;
+    }
+  }
+}

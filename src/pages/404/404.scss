@@ -1,0 +1,12 @@
+@use './src/styles/mixins' as *;
+@use './src/styles/vars' as *;
+
+.error404 {
+  @include place-center;
+  border: $borderStyle;
+  padding: 1rem;
+  text-align: center;
+  &__message {
+    margin-bottom: 1rem;
+  }
+}

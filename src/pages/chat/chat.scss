@@ -1,0 +1,159 @@
+@use "src/styles/vars" as *;
+@use "src/styles/mixins" as *;
+
+.chat {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 320px 1fr;
+}
+
+.sidebar {
+  height: 100%;
+  padding: 20px 10px 0 10px;
+  border-right: $borderStyle;
+
+  &__profile-btn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    & p {
+      margin-right: .8rem;
+    }
+  }
+
+  &__search-container {
+    margin: 22px 0 14px;
+    display: flex;
+    .icon {
+      margin: 0 .8rem;
+    }
+
+    input {
+      width: 100%;
+    }
+  }
+
+  &__chat {
+    display: flex;
+    padding: 12px 0;
+    border-top: $borderStyle;
+
+    &-avatar {
+      @include avatar;
+    }
+
+    &-content {
+      padding: 0 10rem 0 1.5rem;
+    }
+
+    &-info {
+      font-size: 1.1rem;
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+
+      &-date {
+
+      }
+
+      &-messages-count {
+        padding: .5rem;
+        margin-top: auto;
+        max-height: 2rem;
+        display: flex;
+        align-items: center;
+        background-color: lightgray;
+        border: $borderStyle;
+      }
+    }
+  }
+}
+
+.dialog {
+  padding: .5rem 2rem;
+  display: grid;
+  grid-template-rows: 5.4rem 1fr 5.4rem;
+
+  &__header {
+    border-bottom: $borderStyle;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &-mediabox {
+      display: flex;
+      align-items: center;
+    }
+
+    &-avatar {
+      @include avatar;
+      margin-right: 1.5rem;
+    }
+
+    &-dropdown {
+      width: 2rem;
+      height: 2rem;
+      cursor: pointer;
+      position: relative;
+    }
+  }
+
+  &__body {
+    padding: 2rem 0;
+
+    &-date {
+      text-align: center;
+    }
+
+    &-msg-container {
+      display: flex;
+      margin: 1rem 0;
+    }
+
+    &-msg {
+      max-width: 50%;
+      padding: 1rem;
+      margin-left: auto;
+      border: 1px dashed black;
+
+      &-incoming {
+        margin-left: 0;
+        border: 1px dashed black;
+      }
+
+      &-time {
+        font-size: .8rem;
+        text-align: right;
+      }
+    }
+  }
+
+  &__footer {
+    border-top: $borderStyle;
+    padding-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &-attach-btn {
+      position: relative;
+      cursor: pointer;
+    }
+
+    &-input {
+      border: none;
+      padding: 1.3rem;
+      border-radius: 1rem;
+      height: 3.2rem;
+      width: 90%;
+    }
+
+    &-send-btn {
+      width: 2.8rem;
+      height: 2.8rem;
+      border-radius: 50%;
+    }
+  }
+}
