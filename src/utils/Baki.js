@@ -1,3 +1,7 @@
+/*
+* Curly templator for real monkeys
+* */
+
 window.Templator = (function () {
   function _compileTemplate(template, ctx) {
     let tmpl = this._template;
