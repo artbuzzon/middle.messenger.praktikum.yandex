@@ -12,7 +12,7 @@
 .idea/**/contentModel.xml
 .dist/*
 dist
-.cache
+.cache/
 # Sensitive or high-churn files
 .idea/**/dataSources/
 .idea/**/dataSources.ids
