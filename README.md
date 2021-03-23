@@ -8,7 +8,10 @@ https://sad-fermat-4f179e.netlify.app/
 Here you can found out what's under the hood:
 https://github.com/artbuzzon/middle.messenger.praktikum.yandex/pull/1
 
-You can kick things of by running:
+You can kick things off by running:
+
     npm run start
+
 Or if "you try to build something©":
+
     npm run build

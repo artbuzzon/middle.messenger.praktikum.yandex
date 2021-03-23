@@ -1,5 +1,5 @@
-import Hogan from '../../node_modules/hogan.js/lib/hogan';
 import DOMWorker from './DOMWorker';
+import Baki from './Baki';
 
 export class NodeCreator {
   constructor(root, tmpl, node = document.createDocumentFragment()) {
@@ -28,7 +28,6 @@ export class NodeCreator {
   }
 
   getHtml(data) {
-    const chatT = Hogan.compile(this.html);
-    return chatT.render(data);
+    return new Baki(this.html).compileTemplate(data);
   }
 }
