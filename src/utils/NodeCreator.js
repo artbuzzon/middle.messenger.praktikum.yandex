@@ -1,4 +1,5 @@
 import Hogan from '../../node_modules/hogan.js/lib/hogan';
+import DOMWorker from './DOMWorker';
 
 export class NodeCreator {
   constructor(root, tmpl, node = document.createDocumentFragment()) {
@@ -9,12 +10,12 @@ export class NodeCreator {
   }
 
   insertToDom() {
-    const domNode = document.querySelector(this.root);
+    const domNode = DOMWorker.getEl(this.root);
     domNode.append(this.node);
   }
 
   htmlToElement(html) {
-    const template = document.createElement('template');
+    const template = DOMWorker.createEl('template');
     html = html.trim();
     template.innerHTML = html;
     return template.content.firstChild;

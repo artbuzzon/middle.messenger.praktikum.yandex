@@ -1,3 +1,8 @@
+/*
+* Here you can find... or lost.
+* We warned you.
+* */
+
 export function sum(...args) {
   if (args.length === 0) {
     throw Error('sum required at least 1 argument')
@@ -35,11 +40,6 @@ export const getFirstInArray = (list) => {
     return;
   }
 };
-
-const getSum = (list) => {
-  return list.reduce((acc, item) => item + acc);
-};
-
 
 const range = (...args) => {
 

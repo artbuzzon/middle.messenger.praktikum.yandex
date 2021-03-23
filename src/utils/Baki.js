@@ -1,5 +1,5 @@
 /*
-* Curly templator for real monkeys
+* Curly templator for real web-monkeys
 * */
 
 window.Templator = (function () {

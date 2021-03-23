@@ -1,46 +1,54 @@
 import {NodeCreator} from '../../utils/NodeCreator';
 import tmpl from './chat-actions-dropdown.tmpl';
+import DOMWorker from '../../utils/DOMWorker';
 
 new NodeCreator('[data-name="chat-actions"]',
     tmpl).createChild().insertToDom();
 
-const chatActionsEl = document.querySelector('[data-name="chat-actions"]');
-const dropdown = document.querySelector('[data-name="chat-actions-dropdown"]');
-const chatActionsDropdownMask = document.querySelector(
-    '[data-name="chat-actions-mask"]');
-const addUserModal = document.querySelector(
-    '[data-name="create-user-modal"]');
-const addUserModalMask = document.querySelector(
-    '[data-name="create-user-modal-mask"]');
-const chatDropdownAddUserBtnEL = document.querySelector(
-    '[data-name="chat-dropdown__add-user"]');
+const elementsToGet = [
+  '[data-name="chat-actions"]',
+  '[data-name="chat-actions-dropdown"]',
+  '[data-name="chat-actions-mask"]',
+  '[data-name="create-user-modal"]',
+  '[data-name="create-user-modal-mask"]',
+  '[data-name="chat-dropdown__add-user"]',
+];
+
+const [
+  chatActionsEl,
+  dropdown,
+  chatActionsDropdownMask,
+  addUserModal,
+  addUserModalMask,
+  chatDropdownAddUserBtnEL,
+] = DOMWorker.getEls(elementsToGet);
 
 dropdown.hidden = true;
 chatActionsDropdownMask.hidden = true;
 addUserModal.hidden = true;
 
 chatActionsDropdownMask.addEventListener('click', (e) => {
+  e.stopPropagation();
   dropdown.hidden = true;
   chatActionsDropdownMask.hidden = true;
-  e.stopPropagation();
 });
 
 chatActionsEl.addEventListener('click', (e) => {
+  e.stopPropagation();
   dropdown.hidden = false;
   chatActionsDropdownMask.hidden = false;
-  e.stopPropagation();
 });
 
 chatDropdownAddUserBtnEL.addEventListener('click', (e) => {
+  e.stopPropagation();
   dropdown.hidden = true;
   chatActionsDropdownMask.hidden = true;
   addUserModal.hidden = false;
-  e.stopPropagation();
 });
 
 addUserModalMask.addEventListener('click', (e) => {
-  addUserModal.hidden = true;
   e.stopPropagation();
+  addUserModal.hidden = true;
 });
 
 
