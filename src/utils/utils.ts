@@ -1,6 +1,6 @@
 /*
-* Here you can find... or lost.
-* We warned you.
+* Some random stuff picked up during the course. Not used anywhere in the project right now.
+* You may not want to review it.
 * */
 
 export function sum(...args) {
