@@ -17,7 +17,7 @@ const repeatPassEl = DOMWorker.getEl('#repeat-pass') as HTMLInputElement;
 
 const profilePassForm = DOMWorker.getEl(
     '[data-name="profile-password-form"]');
-profilePassForm.onsubmit = (e) =>
+profilePassForm.onsubmit = (e) => {
     e.preventDefault();
     console.log({
         oldPass: oldPassEl.value,
