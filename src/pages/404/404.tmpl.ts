@@ -1,4 +1,4 @@
-export default  `
+export const tmpl =  `
 <div class="error404">
     <div class="error404__message-container">
         <p class="error404__message">404 🙁</p>

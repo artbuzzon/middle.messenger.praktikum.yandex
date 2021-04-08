@@ -1,17 +1,8 @@
 import DOMWorker from './DOMWorker';
 import Baki from './Baki';
 
-interface ChatData {
-    time: string,
-    imgSrc: string,
-    lastMessage: string,
-    messagesCount: number,
-    userName: string,
-}
-
-
 export class NodeCreator {
-    constructor(root: string, tmpl: string) {
+    constructor(tmpl: string, root?: string) {
         this.root = root;
         this.node = document.createDocumentFragment();
         this.html = tmpl;
@@ -19,12 +10,17 @@ export class NodeCreator {
     }
 
     node: DocumentFragment;
-    root: string;
+    root?: string;
     html: string;
 
     insertToDom() {
-        const domNode = DOMWorker.getEl(this.root);
-        domNode.append(this.node);
+        if (this.root) {
+            const domNode = DOMWorker.getEl(this.root);
+            console.log(domNode, this.node)
+            domNode.append(this.node);
+        } else {
+            throw new Error('No root defined in NodeCreator')
+        }
     }
 
     htmlToElement(html: string): HTMLElement {
@@ -34,13 +30,13 @@ export class NodeCreator {
         return <HTMLElement>template.content.firstChild;
     }
 
-    createChild(data: ChatData) {
+    createChild(data: Options) {
         const htmlWithData = this.getHtml(data);
         this.node.append(this.htmlToElement(htmlWithData));
         return this;
     }
 
-    getHtml(data: ChatData) {
+    getHtml(data: Options) {
         return new Baki(this.html).compileTemplate(data);
     }
 }

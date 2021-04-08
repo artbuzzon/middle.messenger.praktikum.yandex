@@ -1,7 +1,7 @@
 import Block from "../../utils/Block";
 import Baki from "../../utils/Baki";
 
-class Error500 extends Block {
+class ProfileUserData extends Block {
     constructor(tmpl: string, props: Options = {}) {
         super('div', tmpl, props);
     }
@@ -12,4 +12,4 @@ class Error500 extends Block {
 
 }
 
-export default Error500;
+export default ProfileUserData;

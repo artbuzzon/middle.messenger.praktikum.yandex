@@ -1,4 +1,4 @@
-export default  `
+export const tmpl =  `
 <div class="error500">
     <div class="error500__message-container">
         <span class="error500__message">500 😱</span>

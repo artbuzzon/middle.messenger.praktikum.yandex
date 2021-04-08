@@ -9,6 +9,12 @@ export default class DOMWorker {
         }
     }
 
+    static append(query: string, element: HTMLElement) {
+        const root = this.getEl(query);
+        root.appendChild(element);
+        return root;
+    }
+
     static createEl(el: string): HTMLElement {
         return document.createElement(el)
     }

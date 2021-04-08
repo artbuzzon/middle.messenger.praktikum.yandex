@@ -1,7 +1,7 @@
 import Block from "../../utils/Block";
 import Baki from "../../utils/Baki";
 
-class Error500 extends Block {
+class ChatAttachDropdown extends Block {
     constructor(tmpl: string, props: Options = {}) {
         super('div', tmpl, props);
     }
@@ -10,6 +10,11 @@ class Error500 extends Block {
         return new Baki(this.tmpl).compileTemplate(this.props);
     }
 
+
 }
 
-export default Error500;
+export default ChatAttachDropdown;
+
+
+
+

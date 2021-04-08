@@ -1,5 +1,15 @@
-import tmpl from './404.tmpl';
-import {NodeCreator} from '../../utils/NodeCreator';
+import Block from "../../utils/Block";
+import Baki from "../../utils/Baki";
 
-new NodeCreator('#root', tmpl).createChild().insertToDom();
+class Error404 extends Block {
+    constructor(tmpl: string, props: Options = {}) {
+        super('div', tmpl, props);
+    }
 
+    render() {
+        return new Baki(this.tmpl).compileTemplate(this.props);
+    }
+
+}
+
+export default Error404;
