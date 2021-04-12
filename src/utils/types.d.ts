@@ -1,5 +1,21 @@
 interface Options {
-    [key: string]: any, //refactor
+    [key: string]: any,
+}
+
+interface ApiOptions {
+    method: string;
+    data?: any;
+    timeout?: number;
+}
+
+interface urlOptions {
+    [key: string]: any
+}
+
+type OptionsWithoutMethod = Omit<ApiOptions, 'method'>;
+
+interface ValidInputValues {
+    [key: string]: RegExp,
 }
 
 interface MetaData {
@@ -10,5 +26,3 @@ interface MetaData {
 interface Listener {
     [key: string]: Function[]
 }
-
-

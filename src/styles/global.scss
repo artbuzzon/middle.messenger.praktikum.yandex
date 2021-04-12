@@ -13,14 +13,6 @@ main {
   font-size: 1.4rem;
 }
 
-.input-field-container {
-  display: flex;
-  flex-direction: column;
-
-  &:not(:last-of-type) {
-    margin-bottom: 1.5rem;
-  }
-}
 
 .icon {
   font-size: 1.8rem;

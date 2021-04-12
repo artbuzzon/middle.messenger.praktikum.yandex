@@ -54,20 +54,25 @@ class Block {
     }
 
     // Может переопределять пользователь, необязательно трогать
-    componentDidMount(oldProps?: Options) {
+    componentDidMount(oldProps: Options) {
         console.log(oldProps)
     }
 
     _componentDidUpdate(oldProps: Options, newProps: Options) {
-        const response = this.componentDidUpdate(oldProps, newProps);
-        console.log(response)
+        this.componentDidUpdate(oldProps, newProps);
         this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
 
     // Может переопределять пользователь, необязательно трогать
     componentDidUpdate(oldProps: Options, newProps: Options) {
-        console.log(oldProps, newProps);
         return true;
+    }
+
+    _componentUpdate() {
+        this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+    }
+
+    componentUpdate() {
     }
 
     setProps = (nextProps: Options) => {
@@ -86,6 +91,7 @@ class Block {
     }
 
     _render() {
+        //TODO use fragment from NodeCreator
         this._element.innerHTML = this.render();
     }
 
@@ -108,7 +114,7 @@ class Block {
                     throw new Error('Нет прав');
                 } else {
                     props[p] = value;
-                    self.eventBus().emit(Block.EVENTS.FLOW_CDU);
+                    self.eventBus().emit(Block.EVENTS.FLOW_CDU, props, this.props);
                 }
                 return true;
             },

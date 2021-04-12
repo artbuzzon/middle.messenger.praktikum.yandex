@@ -6,6 +6,7 @@ export const tmpl =  `
     <ul class="profile__content">
         <li class="profile__content-avatar">
         </li>
+        <div data-name="fields-container"></div>
         <li class="profile__content-field">
             <span>Почта</span>
             <span>pochta@yandex.ru</span>

@@ -3,14 +3,11 @@ import './chat-preview';
 import ChatPreview from "./chat-preview";
 import DOMWorker from "../../utils/DOMWorker";
 import {tmpl} from './chat-preview.tmpl'
+import {chats} from "../../utils/mocks";
 
-const chatPreview = new ChatPreview(tmpl, {
-    time: '12:48',
-    imgSrc: '',
-    lastMessage: 'Круто!',
-    messagesCount: 4,
-    userName: 'Вася',
+chats.forEach(chat => {
+    const chatPreview = new ChatPreview(tmpl, chat)
+    DOMWorker.append('[data-name="chats-container"]', chatPreview.getContent());
 })
 
-DOMWorker.append('[data-name="chats-container"]', chatPreview.getContent());
 
