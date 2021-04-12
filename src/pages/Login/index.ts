@@ -8,7 +8,7 @@ import {tmpl as InputTmpl} from "../../components/Input/input.tmpl";
 import Input from "../../components/Input/input";
 import '../../components/Input/input.scss';
 import {getUuid} from "../../utils/utils";
-import {INPUT_TYPES} from "../../utils/consts";
+import {ERROR_MSGS, INPUT_TYPES} from "../../utils/consts";
 import Form from "../../utils/Form";
 
 const loginPage = new Form(loginTmpl, {
@@ -21,7 +21,7 @@ const fields = [new Input(InputTmpl, {
     value: '',
     type: INPUT_TYPES.TEXT,
     placeholder: 'login',
-    errorMessage: 'Логин должен содержать минимум 5 символов',
+    errorMessage: ERROR_MSGS.TEXT,
     inputUuid: getUuid(),
     errorMessageUuid: getUuid(),
 }), new Input(InputTmpl, {
@@ -29,7 +29,7 @@ const fields = [new Input(InputTmpl, {
     value: '',
     placeholder: 'password',
     type: INPUT_TYPES.PASS,
-    errorMessage: 'Пассворд должен содержать минимум 8 символов и всякие знаки',
+    errorMessage: ERROR_MSGS.PASS,
     inputUuid: getUuid(),
     errorMessageUuid: getUuid(),
 })];

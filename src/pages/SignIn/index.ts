@@ -8,7 +8,7 @@ import {getUuid} from "../../utils/utils";
 import Form from "../../utils/Form";
 import Input from "../../components/Input/input";
 import {tmpl as InputTmpl} from "../../components/Input/input.tmpl";
-import {INPUT_TYPES} from "../../utils/consts";
+import {ERROR_MSGS, INPUT_TYPES} from "../../utils/consts";
 import '../../components/Input/input.scss';
 
 const signInPage = new Form(signInTmpl, {
@@ -21,7 +21,7 @@ const fields = [new Input(InputTmpl, {
     value: '',
     type: INPUT_TYPES.EMAIL,
     placeholder: '@ivanivanov',
-    errorMessage: 'Введите корректный email',
+    errorMessage: ERROR_MSGS.EMAIL,
     inputUuid: getUuid(),
     errorMessageUuid: getUuid(),
 }), new Input(InputTmpl, {
@@ -29,7 +29,7 @@ const fields = [new Input(InputTmpl, {
     value: '',
     type: INPUT_TYPES.TEXT,
     placeholder: 'login',
-    errorMessage: 'Логин должен содержать минимум 5 символов',
+    errorMessage: ERROR_MSGS.TEXT,
     inputUuid: getUuid(),
     errorMessageUuid: getUuid(),
 }), new Input(InputTmpl, {
@@ -37,7 +37,7 @@ const fields = [new Input(InputTmpl, {
     value: '',
     type: INPUT_TYPES.TEXT,
     placeholder: 'ivan',
-    errorMessage: 'Имя должно содержать минимум 5 символов',
+    errorMessage: ERROR_MSGS.TEXT,
     inputUuid: getUuid(),
     errorMessageUuid: getUuid(),
 }), new Input(InputTmpl, {
@@ -45,7 +45,7 @@ const fields = [new Input(InputTmpl, {
     value: '',
     type: INPUT_TYPES.TEXT,
     placeholder: 'ivanov',
-    errorMessage: 'Фамилия должна содержать минимум 5 символов',
+    errorMessage: ERROR_MSGS.TEXT,
     inputUuid: getUuid(),
     errorMessageUuid: getUuid(),
 }), new Input(InputTmpl, {
@@ -53,7 +53,7 @@ const fields = [new Input(InputTmpl, {
     value: '',
     type: INPUT_TYPES.TEXT,
     placeholder: 'phone number',
-    errorMessage: 'Введите корректный номер',
+    errorMessage: ERROR_MSGS.PHONE,
     inputUuid: getUuid(),
     errorMessageUuid: getUuid(),
 }), new Input(InputTmpl, {
@@ -61,7 +61,7 @@ const fields = [new Input(InputTmpl, {
     value: '',
     type: INPUT_TYPES.PASS,
     placeholder: 'password',
-    errorMessage: 'Пассворд должен содержать минимум 8 символов и всякие знаки',
+    errorMessage: ERROR_MSGS.PASS,
     inputUuid: getUuid(),
     errorMessageUuid: getUuid(),
 }), new Input(InputTmpl, {
@@ -69,7 +69,7 @@ const fields = [new Input(InputTmpl, {
     value: '',
     type: INPUT_TYPES.PASS,
     placeholder: 'password',
-    errorMessage: 'Пассворд должен содержать минимум 8 символов и всякие знаки',
+    errorMessage: ERROR_MSGS.PASS,
     inputUuid: getUuid(),
     errorMessageUuid: getUuid(),
 })];

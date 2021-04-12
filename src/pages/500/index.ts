@@ -7,6 +7,7 @@ import Error500 from "./500";
 import {tmpl} from "./500.tmpl";
 
 const error500 = new Error500(tmpl)
+console.log(error500.getContent())
 DOMWorker.append('#root', error500.getContent());
 
 

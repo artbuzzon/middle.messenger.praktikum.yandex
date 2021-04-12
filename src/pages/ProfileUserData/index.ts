@@ -2,14 +2,14 @@ import '../../styles/reset.scss';
 import '../../styles/fonts.scss';
 import '../../styles/global.scss';
 import './profile-user-data.scss';
+import {tmpl as profileTmpl} from "./profile-user-data.tmpl";
 import Form from "../../utils/Form";
 import DOMWorker from "../../utils/DOMWorker";
 import {getUuid} from "../../utils/utils";
 import Input from "../../components/Input/input";
 import {tmpl as InputTmpl} from "../../components/Input/input.tmpl";
-import {ERROR_MSGS, INPUT_TYPES} from "../../utils/consts";
 import '../../components/Input/input.scss';
-import {tmpl as profileTmpl} from "./profile-user-data.tmpl";
+import {ERROR_MSGS, INPUT_TYPES} from "../../utils/consts";
 
 const profilePage = new Form(profileTmpl, {
     btnUuid: getUuid()

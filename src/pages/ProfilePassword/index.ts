@@ -1,3 +1,5 @@
+
+
 import '../../styles/reset.scss';
 import '../../styles/fonts.scss';
 import '../../styles/global.scss';
@@ -10,8 +12,6 @@ import Input from "../../components/Input/input";
 import {tmpl as InputTmpl} from "../../components/Input/input.tmpl";
 import {ERROR_MSGS, INPUT_TYPES} from "../../utils/consts";
 import '../../components/Input/input.scss';
-
-
 const passwordPage = new Form(passwordTmpl, {
     btnUuid: getUuid()
 })

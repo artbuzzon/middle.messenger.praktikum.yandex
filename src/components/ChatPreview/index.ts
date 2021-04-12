@@ -1,4 +1,3 @@
-import './chat-preview.scss';
 import './chat-preview';
 import ChatPreview from "./chat-preview";
 import DOMWorker from "../../utils/DOMWorker";
