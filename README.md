@@ -2,6 +2,8 @@ That's an awesome chat written in plain javascript. Sometimes it works, sometime
 If it doesn't, read a book.
 We are not so bad at programming, we just like reading.
 
+https://github.com/artbuzzon/middle.messenger.praktikum.yandex/pull/2
+
 Here you can try it out live:
 https://sad-fermat-4f179e.netlify.app/
 
@@ -15,3 +17,4 @@ You can kick things off by running:
 Or if "you try to build something©":
 
     npm run build
+
