@@ -65,6 +65,7 @@ class Block {
 
     // Может переопределять пользователь, необязательно трогать
     componentDidUpdate(oldProps: Options, newProps: Options) {
+        console.log(oldProps, newProps)
         return true;
     }
 
