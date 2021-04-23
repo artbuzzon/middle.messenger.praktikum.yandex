@@ -1,0 +1,12 @@
+@use "src/styles/mixins" as *;
+@use "src/styles/vars" as *;
+
+.input__error-message {
+  color: orangered;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+}

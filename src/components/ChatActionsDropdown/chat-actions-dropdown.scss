@@ -1,0 +1,18 @@
+@use "src/styles/mixins" as *;
+@use "src/styles/vars" as *;
+
+
+.chat-dropdown {
+  position: absolute;
+  right: 0;
+  font-size: 1.4rem;
+  @include box;
+}
+
+.chat-dropdown__action {
+  padding: 1rem;
+
+  &:not(:last-of-type) {
+    border-bottom: $borderStyle;
+  }
+}
