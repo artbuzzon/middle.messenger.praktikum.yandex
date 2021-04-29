@@ -2,6 +2,8 @@
 * Curly templator for real web-monkeys
 * */
 
+import DOMWorker from "./DOMWorker";
+
 export default class Baki {
     TEMPLATE_REGEXP = /\{\{(.*?)\}\}/gi;
     _template: string;
@@ -23,7 +25,14 @@ export default class Baki {
             }
         }
 
-        return tmpl;
+        return this.getDomNode(tmpl);
+    }
+
+    getDomNode(tmpl: string): HTMLElement {
+        const template = DOMWorker.createEl('template') as HTMLTemplateElement;
+        tmpl = tmpl.trim();
+        template.innerHTML = tmpl;
+        return <HTMLElement>template.content.firstChild;
     }
 
     getValue(obj: Options, path: string, defaultValue = ''): string {
@@ -38,6 +47,6 @@ export default class Baki {
             }
         }
 
-        return result.toString() ?? defaultValue;
+        return String(result) ?? defaultValue;
     }
 }

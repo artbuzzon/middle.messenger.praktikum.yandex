@@ -23,6 +23,7 @@ class Block {
         };
 
         this._tmpl = tmpl;
+
         this.props = this._makePropsProxy(props);
 
         this.eventBus = () => eventBus;
@@ -55,7 +56,6 @@ class Block {
 
     // Может переопределять пользователь, необязательно трогать
     componentDidMount(oldProps: Options) {
-        console.log(oldProps)
     }
 
     _componentDidUpdate(oldProps: Options, newProps: Options) {
@@ -65,7 +65,6 @@ class Block {
 
     // Может переопределять пользователь, необязательно трогать
     componentDidUpdate(oldProps: Options, newProps: Options) {
-        console.log(oldProps, newProps)
         return true;
     }
 
@@ -92,11 +91,10 @@ class Block {
     }
 
     _render() {
-        //TODO use fragment from NodeCreator
-        this._element.innerHTML = this.render();
+        const node = this.render()
+        this._element.append(node);
     }
 
-    // Может переопределять пользователь, необязательно трогать
     render() {
     }
 
@@ -108,14 +106,14 @@ class Block {
         // Можно и так передать this
         // Такой способ больше не применяется с приходом ES6+
         const self = this;
-
         return new Proxy(props, {
-            set(props: Options, p: string, value) {
+            set(target: Options, p: string, value) {
                 if (p.indexOf('_') === 0) {
                     throw new Error('Нет прав');
                 } else {
-                    props[p] = value;
-                    self.eventBus().emit(Block.EVENTS.FLOW_CDU, props, this.props);
+                    console.log('target', target, p, value)
+                    target[p] = value;
+                    self.eventBus().emit(Block.EVENTS.FLOW_CDU, target, this.props);
                 }
                 return true;
             },

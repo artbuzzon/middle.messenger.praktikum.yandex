@@ -18,6 +18,10 @@ interface ValidInputValues {
     [key: string]: RegExp,
 }
 
+interface RegistryEntry {
+    [key: string]: any,
+}
+
 interface MetaData {
     tagName: string,
     props: Options

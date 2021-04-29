@@ -1,7 +1,9 @@
-export const tmpl = `
-<form method="POST" class="signin">
-    <p class="signin__title">Регистрация</p>
-    <div data-name="fields-container"></div>
-    <button data-uuid="{{btnUuid}}" class="signin__auth-btn">Авторизоваться</button>
-</form>
+export const tmpl =  `
+    <form method="POST" class="login">
+        <p class="login__title">Вход</p>
+         <div data-component="signin-form">
+         </div>
+        <button data-name="signin-form-btn" class="login__auth-btn">Авторизоваться</button>
+        <a data-name="go-signup" href="signup" class="login__auth-btn">Нет аккаунта?</a>
+    </form>
 `;

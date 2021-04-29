@@ -16,7 +16,6 @@ export class NodeCreator {
     insertToDom() {
         if (this.root) {
             const domNode = DOMWorker.getEl(this.root);
-            console.log(domNode, this.node)
             domNode.append(this.node);
         } else {
             throw new Error('No root defined in NodeCreator')

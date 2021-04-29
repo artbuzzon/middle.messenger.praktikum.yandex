@@ -12,7 +12,11 @@ class Input extends Block {
     }
 
     render() {
-        return new Baki(this.tmpl).compileTemplate(this.props);
+        if (!DOMWorker.isInDom(`[data-uuid="${this.props.inputUuid}"]`)) {
+            return new Baki(this.tmpl).compileTemplate(this.props);
+        } else {
+            return ''
+        }
     }
 
     componentDidUpdate(oldProps: Options) {
@@ -31,8 +35,10 @@ class Input extends Block {
     }
 
     hideErrorMessage() {
-        if (document.querySelector(`[data-uuid="${this.props.errorMessageUuid}]"`))
-            DOMWorker.getEl(`[data-uuid="${this.props.errorMessageUuid}]"`).style.display = 'none';
+        if (document.querySelector(`[data-uuid="${this.props.errorMessageUuid}"]`)) {
+            DOMWorker.getEl(`[data-uuid="${this.props.errorMessageUuid}"]`).style.display = 'none';
+        }
+
     }
 
 }
