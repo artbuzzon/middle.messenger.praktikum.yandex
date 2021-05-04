@@ -3,12 +3,16 @@
     "module": "commonjs",
     "target": "es2015",
     "sourceMap": true,
+    "allowJs": true,
     "noImplicitAny": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "moduleResolution": "node",
     "strictNullChecks": true,
+    "resolveJsonModule": true,
+    "typeRoots" : ["./node_modules/@types", "./typings", "./src/types.d.ts"]
   },
   "exclude": [
-    "node_modules"
+    "node_modules",  "**/*.spec.ts"
   ]
 }

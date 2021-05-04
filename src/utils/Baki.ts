@@ -40,7 +40,9 @@ export default class Baki {
 
         let result = obj;
         for (let key of keys) {
-            result = result[key];
+            if (result[key] !== null) {
+                result = result[key];
+            }
 
             if (result === undefined) {
                 return defaultValue;

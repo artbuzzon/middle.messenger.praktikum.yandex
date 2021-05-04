@@ -1,10 +1,11 @@
 export const tmpl = `
-<form class="profile" data-name="profile-form" method="POST">
+<form name="form" class="profile" data-name="profile-form" method="POST">
     <div class="profile__content-field">
         <a data-name="goback" href="profile">Назад</a>
     </div>
     <ul class="profile__content">
         <li class="profile__content-avatar">
+            <img id="avatar" src="" alt="avatar">
         </li>
         <li class="profile__content-field">
             <label for="profile_pic">Выберите изображение</label>

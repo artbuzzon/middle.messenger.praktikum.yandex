@@ -50,8 +50,8 @@ class Block {
     }
 
     _componentDidMount() {
-        this.componentDidMount();
         this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+        this.componentDidMount();
     }
 
     // Может переопределять пользователь, необязательно трогать
@@ -92,6 +92,7 @@ class Block {
 
     _render() {
         const node = this.render()
+        console.log('node', node)
         this._element.append(node);
     }
 
@@ -111,7 +112,6 @@ class Block {
                 if (p.indexOf('_') === 0) {
                     throw new Error('Нет прав');
                 } else {
-                    console.log('target', target, p, value)
                     target[p] = value;
                     self.eventBus().emit(Block.EVENTS.FLOW_CDU, target, this.props);
                 }

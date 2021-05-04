@@ -50,6 +50,10 @@ export default class Router {
         route.render();
     }
 
+    getCurrentRoute() {
+        return this._currentRoute;
+    }
+
     go(pathname: string) {
         this.history.pushState({}, "", pathname);
         this._onRoute(pathname);

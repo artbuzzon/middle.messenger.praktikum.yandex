@@ -1,4 +1,35 @@
 import DOMWorker from "./DOMWorker";
+import Input from "../components/Input/input";
+import {tmpl as InputTmpl} from "../components/Input/input.tmpl";
+import {ERROR_MSGS, INPUT_TYPES} from "./consts";
+import {getUuid} from "./utils";
+
+
+const fields = [new Input(InputTmpl, {
+    label: 'Старый пассворд',
+    value: '',
+    type: INPUT_TYPES.PASS,
+    placeholder: 'password',
+    errorMessage: ERROR_MSGS.PASS,
+    inputUuid: 'oldPassword',
+    errorMessageUuid: getUuid(),
+}), new Input(InputTmpl, {
+    label: 'Новый пассворд',
+    value: '',
+    placeholder: 'password',
+    type: INPUT_TYPES.PASS,
+    errorMessage: ERROR_MSGS.PASS,
+    inputUuid: 'newPassword',
+    errorMessageUuid: getUuid(),
+}), new Input(InputTmpl, {
+    label: 'Повторите пассворд',
+    value: '',
+    placeholder: 'password',
+    type: INPUT_TYPES.PASS,
+    errorMessage: ERROR_MSGS.PASS,
+    inputUuid: 'password_repeat',
+    errorMessageUuid: getUuid(),
+})];
 
 export default class ComponentRegistry {
     registry: RegistryEntry;
@@ -34,7 +65,7 @@ export default class ComponentRegistry {
                 if (!child) {
                     return
                 }
-                target.replaceWith(child.getContent())
+                target.append(child.getContent())
             })
 
         return component

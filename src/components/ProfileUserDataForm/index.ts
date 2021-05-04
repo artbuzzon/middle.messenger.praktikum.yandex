@@ -6,6 +6,7 @@ import DOMWorker from "../../utils/DOMWorker";
 import Input from "../Input/input";
 import {authStore} from "../../store/auth.store";
 import {tmpl} from "./profile-user-data-form.tmpl";
+import {userStore} from "../../store/user.store";
 
 const fields = [new Input(InputTmpl, {
     label: 'Почта',
@@ -13,7 +14,7 @@ const fields = [new Input(InputTmpl, {
     type: INPUT_TYPES.EMAIL,
     placeholder: '@ivanivanov',
     errorMessage: ERROR_MSGS.EMAIL,
-    inputUuid: getUuid(),
+    inputUuid: 'email',
     errorMessageUuid: getUuid(),
 }), new Input(InputTmpl, {
     label: 'Логин',
@@ -21,7 +22,7 @@ const fields = [new Input(InputTmpl, {
     type: INPUT_TYPES.TEXT,
     placeholder: 'login',
     errorMessage: ERROR_MSGS.TEXT,
-    inputUuid: getUuid(),
+    inputUuid: 'login',
     errorMessageUuid: getUuid(),
 }), new Input(InputTmpl, {
     label: 'Имя',
@@ -29,7 +30,7 @@ const fields = [new Input(InputTmpl, {
     type: INPUT_TYPES.TEXT,
     placeholder: 'ivan',
     errorMessage: ERROR_MSGS.TEXT,
-    inputUuid: getUuid(),
+    inputUuid: 'first_name',
     errorMessageUuid: getUuid(),
 }), new Input(InputTmpl, {
     label: 'Фамилия',
@@ -37,7 +38,7 @@ const fields = [new Input(InputTmpl, {
     type: INPUT_TYPES.TEXT,
     placeholder: 'ivanov',
     errorMessage: ERROR_MSGS.TEXT,
-    inputUuid: getUuid(),
+    inputUuid: 'second_name',
     errorMessageUuid: getUuid(),
 }), new Input(InputTmpl, {
     label: 'Имя в чате',
@@ -45,7 +46,7 @@ const fields = [new Input(InputTmpl, {
     placeholder: 'nickname',
     type: INPUT_TYPES.TEXT,
     errorMessage: ERROR_MSGS.TEXT,
-    inputUuid: getUuid(),
+    inputUuid: 'display_name',
     errorMessageUuid: getUuid(),
 }), new Input(InputTmpl, {
     label: 'Телефон',
@@ -53,10 +54,9 @@ const fields = [new Input(InputTmpl, {
     placeholder: 'phone',
     type: INPUT_TYPES.TEXT,
     errorMessage: ERROR_MSGS.PHONE,
-    inputUuid: getUuid(),
+    inputUuid: 'phone',
     errorMessageUuid: getUuid(),
 })];
-
 
 export class ProfileUserDataForm extends Block {
     constructor() {
@@ -73,8 +73,14 @@ export class ProfileUserDataForm extends Block {
         return containerEl;
     }
 
+    setAvatar(url) {
+        console.log(url)
+        DOMWorker.getEl('#avatar').setAttribute('src', 'https://ya-praktikum.tech/api/v2' + url)
+    }
+
     componentDidMount(oldProps: Options) {
         super.componentDidMount(oldProps);
+        authStore.getUser();
 
         const rootEl = DOMWorker.getEl('#root');
 
@@ -83,22 +89,26 @@ export class ProfileUserDataForm extends Block {
         }, true)
 
 
-        rootEl.addEventListener('click', (e) => {
+        rootEl.addEventListener('submit', (e) => {
             e.preventDefault();
-            if (e.target.dataset.name === 'profile-user-data-form-btn') {
-                let isFormValid = true;
-                fields.forEach(field => {
-                    if (!field._isValid) {
-                        field.componentDidUpdate(field.props)
-                        isFormValid = false;
-                    }
-                })
-                if (isFormValid) {
-                    const payload = this.preparePayload()
-                    authStore.signup(payload).then(() => {
-                        window.location.href = '/'
-                    })
+
+            const avatar = DOMWorker.getEl('#profile_pic');
+            const formData = new FormData();
+            formData.append('avatar', avatar.files[0]);
+
+            let isFormValid = true;
+            fields.forEach(field => {
+                if (!field._isValid) {
+                    field.componentDidUpdate(field.props)
+                    isFormValid = false;
                 }
+            })
+            if (isFormValid) {
+                const payload = this.preparePayload()
+                userStore.changeAvatar(formData);
+                userStore.changeProfileData(payload).then(() => {
+                    window.location.href = '/profile'
+                })
             }
         })
     }

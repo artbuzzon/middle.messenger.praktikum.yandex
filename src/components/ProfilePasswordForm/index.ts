@@ -7,14 +7,13 @@ import Input from "../Input/input";
 import {authStore} from "../../store/auth.store";
 import {tmpl} from "./profile-password-form.tmpl";
 
-
 const fields = [new Input(InputTmpl, {
     label: 'Старый пассворд',
     value: '',
     type: INPUT_TYPES.PASS,
     placeholder: 'password',
     errorMessage: ERROR_MSGS.PASS,
-    inputUuid: getUuid(),
+    inputUuid: 'oldPassword',
     errorMessageUuid: getUuid(),
 }), new Input(InputTmpl, {
     label: 'Новый пассворд',
@@ -22,7 +21,7 @@ const fields = [new Input(InputTmpl, {
     placeholder: 'password',
     type: INPUT_TYPES.PASS,
     errorMessage: ERROR_MSGS.PASS,
-    inputUuid: getUuid(),
+    inputUuid: 'newPassword',
     errorMessageUuid: getUuid(),
 }), new Input(InputTmpl, {
     label: 'Повторите пассворд',
@@ -30,7 +29,7 @@ const fields = [new Input(InputTmpl, {
     placeholder: 'password',
     type: INPUT_TYPES.PASS,
     errorMessage: ERROR_MSGS.PASS,
-    inputUuid: getUuid(),
+    inputUuid: 'password_repeat',
     errorMessageUuid: getUuid(),
 })];
 
@@ -41,7 +40,7 @@ export class ProfilePasswordForm extends Block {
 
     render() {
         const containerEl = DOMWorker.createEl('div')
-        containerEl.setAttribute('data-component', 'profile-password-form')
+        containerEl.setAttribute('data-component', 'signup-form')
 
         fields.forEach(input => {
             containerEl.append(input.getContent())
@@ -60,8 +59,7 @@ export class ProfilePasswordForm extends Block {
 
 
         rootEl.addEventListener('click', (e) => {
-            e.preventDefault();
-            if (e.target.dataset.name === 'profile-password-form-btn') {
+            if (e.target.dataset.name === 'signup-form-btn') {
                 let isFormValid = true;
                 fields.forEach(field => {
                     if (!field._isValid) {
@@ -72,7 +70,7 @@ export class ProfilePasswordForm extends Block {
                 if (isFormValid) {
                     const payload = this.preparePayload()
                     authStore.signup(payload).then(() => {
-                        window.location.href = '/'
+                        window.location.href = '/profile'
                     })
                 }
             }

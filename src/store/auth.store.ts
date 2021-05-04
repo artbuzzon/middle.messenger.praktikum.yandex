@@ -26,7 +26,6 @@ export const authStore = {
         return new AuthAPI().getUser().then((xhr) => {
             if (xhr.status === 200) {
                 this.state.user = JSON.parse(xhr.response);
-                console.log(this.state.user)
             }
         }).catch((e) => {
             throw new Error(e)

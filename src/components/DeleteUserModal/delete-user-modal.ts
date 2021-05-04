@@ -1,7 +1,7 @@
 import Block from "../../utils/Block";
 import Baki from "../../utils/Baki";
 
-class ChatActionsDropdown extends Block {
+class DeleteUserModal extends Block {
     constructor(tmpl: string, props: Options = {}) {
         super('div', tmpl, props);
     }
@@ -12,7 +12,7 @@ class ChatActionsDropdown extends Block {
 
 }
 
-export default ChatActionsDropdown;
+export default DeleteUserModal;
 
 
 

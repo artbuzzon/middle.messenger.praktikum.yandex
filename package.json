@@ -9,7 +9,8 @@
   "scripts": {
     "start": "parcel static/index.html & node src/utils/server.js",
     "dev": "parcel static/index.html",
-    "build": "parcel build static/*.html"
+    "build": "parcel build static/*.html",
+    "test": "./node_modules/.bin/mocha"
   },
   "repository": {
     "type": "git",
@@ -23,17 +24,32 @@
   },
   "homepage": "https://github.com/artbuzzon/chat#readme",
   "devDependencies": {
+    "@babel/cli": "^7.13.16",
+    "@babel/core": "^7.14.0",
+    "@babel/preset-env": "^7.14.0",
+    "@babel/preset-typescript": "^7.13.0",
+    "@babel/register": "^7.13.16",
+    "@types/chai": "^4.2.17",
+    "@types/mocha": "^8.2.2",
+    "@types/sinon": "^10.0.0",
     "@typescript-eslint/eslint-plugin": "^4.20.0",
     "@typescript-eslint/parser": "^4.20.0",
+    "chai": "^4.3.4",
     "eslint": "^7.23.0",
     "express": "^4.17.1",
+    "ignore-styles": "^5.0.1",
+    "jsdom": "^16.5.3",
+    "mocha": "^8.3.2",
     "parcel-bundler": "^1.12.5",
+    "sinon": "^10.0.0",
     "stylelint": "^13.12.0",
     "stylelint-config-standard": "^21.0.0",
-    "typescript": "^4.2.3"
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.4"
   },
   "dependencies": {
     "hogan.js": "^3.0.2",
-    "sass": "^1.32.8"
+    "sass": "^1.32.8",
+    "xmlhttprequest": "^1.8.0"
   }
 }

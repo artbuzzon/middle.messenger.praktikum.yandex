@@ -91,5 +91,4 @@ export class SignInForm extends Block {
             inputField.props.value = target.value;
         }
     }
-
 }

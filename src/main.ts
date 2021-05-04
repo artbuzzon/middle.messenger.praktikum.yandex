@@ -9,9 +9,9 @@ import {SignUpForm} from "./components/SignUpForm";
 import {SignIn} from "./pages/SignIn";
 import {SignInForm} from "./components/SignInForm";
 import {ProfileUserData} from "./pages/ProfileUserData";
-import {ProfileUserDataForm} from "./components/ProfileUserDataFrom";
 import {ProfilePasswordForm} from "./components/ProfilePasswordForm";
 import {ProfilePassword} from "./pages/ProfilePassword";
+import {ProfileUserDataForm} from "./components/ProfileUserDataForm";
 
 
 

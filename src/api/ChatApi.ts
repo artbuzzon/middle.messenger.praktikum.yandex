@@ -1,14 +1,25 @@
 import {BaseAPI} from "../utils/BaseApi";
 import {HTTP} from "../utils/HTTP";
 
-const chatAPIInstance = new HTTP('api/v1/chats');
+const chatAPIInstance = new HTTP('/chats');
 
-class ChatAPI extends BaseAPI {
-    create() {
-        return chatAPIInstance.post('/', {title: 'string'});
+export class ChatsAPI extends BaseAPI {
+    getChats() {
+        return chatAPIInstance.get('');
     }
 
-    request() {
-        return chatAPIInstance.get('/full');
+    createChat(payload) {
+        return chatAPIInstance.post('', {data: payload});
+    }
+
+    addUsersToChat(payload) {
+        return chatAPIInstance.put('/users', {data: payload})
+    }
+
+    deleteUsersFromChat(payload) {
+        return chatAPIInstance.delete('/users', {data: payload})
+    }
+    getToken(chatId) {
+        return chatAPIInstance.post('/token/' + chatId)
     }
 }
