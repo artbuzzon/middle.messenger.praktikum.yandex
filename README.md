@@ -2,7 +2,9 @@ That's an awesome chat written in plain javascript. Sometimes it works, sometime
 If it doesn't, read a book.
 We are not so bad at programming, we just like reading.
 
-https://github.com/artbuzzon/middle.messenger.praktikum.yandex/pull/2
+Sprint 3
+
+https://github.com/artbuzzon/middle.messenger.praktikum.yandex/pull/3
 
 Here you can try it out live:
 https://sad-fermat-4f179e.netlify.app/
