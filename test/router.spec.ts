@@ -1,10 +1,10 @@
 import jsdom from 'jsdom';
-import {Router} from 'express';
 import Chat from '../src/pages/Chat/chat';
 import {SignIn, SignUp} from '../dist/main.62d00c9e';
 import Profile from '../src/pages/Profile';
 import {ProfileUserData} from '../src/pages/ProfileUserData';
 import {ProfilePassword} from '../src/pages/ProfilePassword';
+import Router from "../src/utils/Router";
 
 const index = `<!DOCTYPE html><html lang="en"></html>`;
 
