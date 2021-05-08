@@ -8,6 +8,10 @@ import {authStore} from "../../store/auth.store";
 import {tmpl} from "./profile-user-data-form.tmpl";
 import {userStore} from "../../store/user.store";
 
+interface Options {
+    [key: string]: any,
+}
+
 const fields = [new Input(InputTmpl, {
     label: 'Почта',
     value: '',
@@ -73,8 +77,7 @@ export class ProfileUserDataForm extends Block {
         return containerEl;
     }
 
-    setAvatar(url) {
-        console.log(url)
+    setAvatar(url: string) {
         DOMWorker.getEl('#avatar').setAttribute('src', 'https://ya-praktikum.tech/api/v2' + url)
     }
 
@@ -94,6 +97,7 @@ export class ProfileUserDataForm extends Block {
 
             const avatar = DOMWorker.getEl('#profile_pic');
             const formData = new FormData();
+            // @ts-ignore
             formData.append('avatar', avatar.files[0]);
 
             let isFormValid = true;
@@ -119,6 +123,7 @@ export class ProfileUserDataForm extends Block {
             if (field.props.inputUuid === 'password_repeat') {
                 return
             }
+            // @ts-ignore
             payload[field.props.inputUuid] = field.props.value
         })
         return payload

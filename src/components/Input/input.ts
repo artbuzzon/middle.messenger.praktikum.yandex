@@ -3,6 +3,10 @@ import Baki from "../../utils/Baki";
 import DOMWorker from "../../utils/DOMWorker";
 import Valuyadator from "../../utils/Валядатор";
 
+interface Options {
+    [key: string]: any,
+}
+
 class Input extends Block {
     _isValid: boolean;
 

@@ -1,5 +1,9 @@
 import {ChatsAPI} from "../api/ChatApi";
 
+interface Options {
+    [key: string]: any,
+}
+
 export const chatsStore = {
     state: {
         chats: [],
@@ -16,14 +20,14 @@ export const chatsStore = {
         });
     },
 
-    createChat(payload) {
+    createChat(payload: string) {
         return new ChatsAPI().createChat(payload).then((xhr) => xhr.status)
             .catch((e) => {
                 throw new Error(e)
             });
     },
 
-    addUsersToChat(payload) {
+    addUsersToChat(payload: string) {
         return new ChatsAPI().addUsersToChat(payload).then((xhr) => {
             if (xhr.status === 200) {
                 this.state.user = JSON.parse(xhr.response);
@@ -33,11 +37,11 @@ export const chatsStore = {
         });
     },
 
-    deleteUsersFromChat(payload) {
+    deleteUsersFromChat(payload: Options) {
         return new ChatsAPI().deleteUsersFromChat(payload)
     },
 
-    getToken(chatId) {
+    getToken(chatId: Options) {
         return new ChatsAPI().getToken(chatId).then((xhr) => {
             if (xhr.status === 200) {
                 return JSON.parse(xhr.response);

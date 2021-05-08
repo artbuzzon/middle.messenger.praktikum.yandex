@@ -1,4 +1,16 @@
 
+interface urlOptions {
+    [key: string]: any
+}
+
+type OptionsWithoutMethod = Omit<ApiOptions, 'method'>;
+
+interface ApiOptions {
+    method: string;
+    data?: any;
+    timeout?: number;
+}
+
 enum METHODS {
     GET = 'GET',
     POST = 'POST',

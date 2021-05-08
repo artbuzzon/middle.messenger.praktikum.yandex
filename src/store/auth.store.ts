@@ -1,11 +1,17 @@
 import {AuthAPI} from "../api/AuthApi";
 
+interface Options {
+    [key: string]: any,
+}
+
 export const authStore = {
     state: {
         userId: '',
-        user: {}
+        user: {
+            id: ''
+        }
     },
-    signup(payload) {
+    signup(payload: Options) {
         return new AuthAPI().signup(payload).then((xhr) => {
             if (xhr.status === 200) {
                 this.state.userId = JSON.parse(xhr.response);
@@ -15,7 +21,7 @@ export const authStore = {
         });
     },
 
-    signin(payload) {
+    signin(payload: Options) {
         return new AuthAPI().signin(payload).then((xhr) => xhr.status)
             .catch((e) => {
                 throw new Error(e)

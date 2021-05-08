@@ -2,6 +2,10 @@ import {isEqual} from "./utils";
 import Block from "./Block";
 import ComponentRegistry from "./ComponentRegistry";
 
+interface Options {
+    [key: string]: any,
+}
+
 export default class Route {
     _pathname: string;
     _props: Options;
@@ -34,6 +38,7 @@ export default class Route {
 
     render() {
         if (!this._block) {
+            // @ts-ignore
             this._block = new this._blockClass();
             const componentRegistry = new ComponentRegistry();
             componentRegistry.renderRoot('#root', this._block?.getContent())

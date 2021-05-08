@@ -7,6 +7,10 @@ import Input from "../Input/input";
 import {authStore} from "../../store/auth.store";
 import {tmpl} from "./profile-password-form.tmpl";
 
+interface Options {
+    [key: string]: any,
+}
+
 const fields = [new Input(InputTmpl, {
     label: 'Старый пассворд',
     value: '',
@@ -59,6 +63,7 @@ export class ProfilePasswordForm extends Block {
 
 
         rootEl.addEventListener('click', (e) => {
+            // @ts-ignore
             if (e.target.dataset.name === 'signup-form-btn') {
                 let isFormValid = true;
                 fields.forEach(field => {
@@ -83,6 +88,7 @@ export class ProfilePasswordForm extends Block {
             if (field.props.inputUuid === 'password_repeat') {
                 return
             }
+            // @ts-ignore
             payload[field.props.inputUuid] = field.props.value
         })
         return payload

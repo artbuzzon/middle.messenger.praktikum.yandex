@@ -1,6 +1,6 @@
 import {INPUT_TYPES} from "./consts";
 
-const REG_EXP: ValidInputValues = {
+const REG_EXP = {
     [INPUT_TYPES.PASS]: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/, // Minimum eight characters, at least one letter and one number
     [INPUT_TYPES.EMAIL]: /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
     [INPUT_TYPES.TEXT]: /^(?=.{5,20}$).*/

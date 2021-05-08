@@ -1,4 +1,8 @@
 
+interface Listener {
+    [key: string]: Function[]
+}
+
 class EventBus {
     listeners: Listener;
 

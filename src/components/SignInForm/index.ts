@@ -7,6 +7,10 @@ import Input from "../Input/input";
 import {tmpl} from "./signin-form.tmpl";
 import {authStore} from "../../store/auth.store";
 
+interface Options {
+    [key: string]: any,
+}
+
 const fields = [new Input(InputTmpl, {
     label: 'Логин',
     value: '',
@@ -52,6 +56,7 @@ export class SignInForm extends Block {
 
         rootEl.addEventListener('click', (e) => {
             e.preventDefault();
+            // @ts-ignore
             if (e.target.dataset.name === 'signin-form-btn') {
                 let isFormValid = true;
                 fields.forEach(field => {
@@ -79,6 +84,7 @@ export class SignInForm extends Block {
             if (field.props.inputUuid === 'password_repeat') {
                 return
             }
+            // @ts-ignore
             payload[field.props.inputUuid] = field.props.value
         })
         return payload

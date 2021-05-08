@@ -1,6 +1,15 @@
 import EventBus from "./EventBus";
 import DOMWorker from "./DOMWorker";
 
+interface Options {
+    [key: string]: any,
+}
+
+interface MetaData {
+    tagName: string,
+    props: Options
+}
+
 class Block {
     static EVENTS = {
         INIT: "init",
@@ -51,10 +60,11 @@ class Block {
 
     _componentDidMount() {
         this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
-        this.componentDidMount();
+        this.componentDidMount(this.props);
     }
 
     // Может переопределять пользователь, необязательно трогать
+    // @ts-ignore
     componentDidMount(oldProps: Options) {
     }
 
@@ -64,7 +74,9 @@ class Block {
     }
 
     // Может переопределять пользователь, необязательно трогать
+    // @ts-ignore
     componentDidUpdate(oldProps: Options, newProps: Options) {
+        // console.log(oldProps, newProps)
         return true;
     }
 
@@ -92,7 +104,7 @@ class Block {
 
     _render() {
         const node = this.render()
-        console.log('node', node)
+        // @ts-ignore
         this._element.append(node);
     }
 

@@ -3,9 +3,12 @@ import {tmpl} from "./message.tmpl";
 import DOMWorker from "../../utils/DOMWorker";
 import Baki from "../../utils/Baki";
 
+interface Options {
+    [key: string]: any,
+}
+
 class Message extends Block {
     constructor(props: Options) {
-        console.log(props)
         super("div", tmpl, props);
     }
 
@@ -14,7 +17,7 @@ class Message extends Block {
         console.log(this.props)
         if (!this.props.chats) return;
 
-        this.props.chats.forEach(message => {
+        this.props.chats.forEach((message: Options) => {
             console.log(message)
             const el = new Baki(this.tmpl).compileTemplate(message);
             console.log(el)

@@ -1,17 +1,19 @@
 import {UserAPI} from "../api/UserApi";
-
+interface Options {
+    [key: string]: any,
+}
 export const userStore = {
     state: {
         user: {}
     },
-    changeProfileData(payload) {
+    changeProfileData(payload: Options) {
         return new UserAPI().changeProfileData(payload)
             .then((xhr) => xhr)
             .catch((e) => {
                 throw new Error(e)
             });
     },
-    changeAvatar(payload) {
+    changeAvatar(payload: Options) {
         return new UserAPI().changeAvatar(payload)
             .then((xhr) => {
                 this.state.user = xhr.response
@@ -20,7 +22,7 @@ export const userStore = {
                 throw new Error(e)
             });
     },
-    changePassword(payload) {
+    changePassword(payload: Options) {
         return new UserAPI().changePassword(payload)
             .catch((e) => {
                 throw new Error(e)
@@ -28,12 +30,13 @@ export const userStore = {
     },
 
     getUser() {
+        // @ts-ignore
         return new UserAPI().getUser().then((xhr) => {
             if (xhr.status === 200) {
                 this.state.user = JSON.parse(xhr.response);
             }
-        }).catch((e) => {
-            throw new Error(e)
+        }).catch((e: Error) => {
+            throw e
         });
     },
 

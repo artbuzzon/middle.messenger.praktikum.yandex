@@ -11,8 +11,9 @@ class ChatPreview extends Block {
         super("div", tmpl, {chats: []});
     }
 
-    componentDidMount(oldProps: Options) {
+    componentDidMount() {
         chatsStore.getChats().then((chats) => {
+            // @ts-ignore
             chats.forEach(chat => {
                 chat.last_message = JSON.parse(chat.last_message)
             })
@@ -30,6 +31,7 @@ class ChatPreview extends Block {
         // DOMWorker.getEl('[data-component="chat-preview"]').remove()
         // }
 
+        // @ts-ignore
         this.props.chats.forEach(chat => {
             containerEl.append(new Baki(this.tmpl).compileTemplate(chat))
         })

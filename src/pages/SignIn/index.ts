@@ -8,6 +8,9 @@ import {tmpl} from "./signin.tmpl";
 import Baki from "../../utils/Baki";
 import DOMWorker from "../../utils/DOMWorker";
 
+interface Options {
+    [key: string]: any,
+}
 
 export class SignIn extends Block {
     constructor(props: Options = {}) {
@@ -24,7 +27,8 @@ export class SignIn extends Block {
         const rootEl = DOMWorker.getEl('#root');
         rootEl.addEventListener('click', (e) => {
             e.preventDefault();
-          if (e.target.dataset.name === 'go-signup') {
+          // @ts-ignore
+            if (e.target.dataset.name === 'go-signup') {
                 window.location.href = '/signup'
             }
         })

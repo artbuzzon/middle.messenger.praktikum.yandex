@@ -8,8 +8,12 @@ import './profile.scss';
 import {authStore} from "../../store/auth.store";
 import DOMWorker from "../../utils/DOMWorker";
 
+interface Options {
+    [key: string]: any,
+}
+
 class Profile extends Block {
-    constructor(props: Options = {}) {
+    constructor() {
         super('div', tmpl, authStore.state.user);
     }
 
@@ -29,16 +33,23 @@ class Profile extends Block {
         const rootEl = DOMWorker.getEl('#root');
         rootEl.addEventListener('click', (e) => {
             e.preventDefault();
+            // @ts-ignore
             if (e.target.dataset.name === 'logout') {
                 authStore.logout().then(() => {
                     window.location.href = '/signin'
                 })
-            } else if (e.target.dataset.name === 'goback') {
-                window.location.href = '/'
-            } else if (e.target.dataset.name === 'change-data') {
-                window.location.href = '/profile-user-data'
-            } else if (e.target.dataset.name === 'change-password') {
-                window.location.href = '/profile-password'
+            } else { // @ts-ignore
+                if (e.target.dataset.name === 'goback') {
+                    window.location.href = '/'
+                } else { // @ts-ignore
+                    if (e.target.dataset.name === 'change-data') {
+                        window.location.href = '/profile-user-data'
+                    } else { // @ts-ignore
+                        if (e.target.dataset.name === 'change-password') {
+                            window.location.href = '/profile-password'
+                        }
+                    }
+                }
             }
         })
     }

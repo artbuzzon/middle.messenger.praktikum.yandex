@@ -10,10 +10,24 @@
     "moduleResolution": "node",
     "strictNullChecks": true,
     "resolveJsonModule": true,
-    "typeRoots" : ["./node_modules/@types", "./typings", "./src/types.d.ts"]
+    "baseUrl": ".",
+    "paths": {
+      "custom-module-type": [
+        "./src/utils/types.d.ts"
+      ]
+    },
+    "typeRoots": [
+      "./node_modules/@types",
+      "./typings",
+      "src/utils/types.d.ts"
+    ]
   },
-  "include": ["src/**/*", "test/*.spec.ts"],
+  "include": [
+//    "src/**/*",
+    "test/*.spec.ts"
+  ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "src/**/*"
   ]
 }

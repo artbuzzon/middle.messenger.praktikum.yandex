@@ -3,12 +3,16 @@ import {HTTP} from "../utils/HTTP";
 
 const authAPIInstance = new HTTP('/auth');
 
+interface Options {
+    [key: string]: any,
+}
+
 export class AuthAPI extends BaseAPI {
-    signup(payload) {
+    signup(payload: Options) {
         return authAPIInstance.post('/signup', payload);
     }
 
-    signin(payload) {
+    signin(payload: Options) {
         return authAPIInstance.post('/signin', payload);
     }
 

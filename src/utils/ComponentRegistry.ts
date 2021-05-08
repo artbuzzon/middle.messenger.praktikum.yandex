@@ -1,35 +1,9 @@
 import DOMWorker from "./DOMWorker";
-import Input from "../components/Input/input";
-import {tmpl as InputTmpl} from "../components/Input/input.tmpl";
-import {ERROR_MSGS, INPUT_TYPES} from "./consts";
-import {getUuid} from "./utils";
 
 
-const fields = [new Input(InputTmpl, {
-    label: 'Старый пассворд',
-    value: '',
-    type: INPUT_TYPES.PASS,
-    placeholder: 'password',
-    errorMessage: ERROR_MSGS.PASS,
-    inputUuid: 'oldPassword',
-    errorMessageUuid: getUuid(),
-}), new Input(InputTmpl, {
-    label: 'Новый пассворд',
-    value: '',
-    placeholder: 'password',
-    type: INPUT_TYPES.PASS,
-    errorMessage: ERROR_MSGS.PASS,
-    inputUuid: 'newPassword',
-    errorMessageUuid: getUuid(),
-}), new Input(InputTmpl, {
-    label: 'Повторите пассворд',
-    value: '',
-    placeholder: 'password',
-    type: INPUT_TYPES.PASS,
-    errorMessage: ERROR_MSGS.PASS,
-    inputUuid: 'password_repeat',
-    errorMessageUuid: getUuid(),
-})];
+interface RegistryEntry {
+    [key: string]: any,
+}
 
 export default class ComponentRegistry {
     registry: RegistryEntry;
@@ -49,7 +23,7 @@ export default class ComponentRegistry {
         return this;
     }
 
-    renderComponent(component) {
+    renderComponent(component: any) {
 
         const childComponents = component
             .querySelectorAll('[data-component]')
@@ -57,6 +31,7 @@ export default class ComponentRegistry {
         Array
             .from(childComponents)
             .forEach(target => {
+                // @ts-ignore
                 const name = target
                     .dataset
                     .component
@@ -65,13 +40,14 @@ export default class ComponentRegistry {
                 if (!child) {
                     return
                 }
+                // @ts-ignore
                 target.append(child.getContent())
             })
 
         return component
     }
 
-    renderRoot(root: string, component) {
+    renderRoot(root: string, component: any) {
         DOMWorker.append(root, this.renderComponent(component));
     }
 }

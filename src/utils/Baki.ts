@@ -4,6 +4,10 @@
 
 import DOMWorker from "./DOMWorker";
 
+interface Options {
+    [key: string]: any,
+}
+
 export default class Baki {
     TEMPLATE_REGEXP = /\{\{(.*?)\}\}/gi;
     _template: string;
