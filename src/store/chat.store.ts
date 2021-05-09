@@ -1,4 +1,4 @@
-import {ChatsAPI} from "../api/ChatApi";
+import {ChatsAPI} from '../api/ChatApi';
 
 interface Options {
     [key: string]: any,
@@ -16,29 +16,30 @@ export const chatsStore = {
                 return this.state.chats;
             }
         }).catch((e) => {
-            throw new Error(e)
+            throw new Error(e);
         });
     },
 
-    createChat(payload: string) {
+    createChat(payload: string): Promise<number> {
         return new ChatsAPI().createChat(payload).then((xhr) => xhr.status)
             .catch((e) => {
-                throw new Error(e)
+                throw new Error(e);
             });
     },
 
-    addUsersToChat(payload: string) {
+    addUsersToChat(payload: string): Promise<XMLHttpRequest> {
         return new ChatsAPI().addUsersToChat(payload).then((xhr) => {
             if (xhr.status === 200) {
                 this.state.user = JSON.parse(xhr.response);
             }
+            return xhr;
         }).catch((e) => {
-            throw new Error(e)
+            throw new Error(e);
         });
     },
 
-    deleteUsersFromChat(payload: Options) {
-        return new ChatsAPI().deleteUsersFromChat(payload)
+    deleteUsersFromChat(payload: Options): Promise<XMLHttpRequest> {
+        return new ChatsAPI().deleteUsersFromChat(payload);
     },
 
     getToken(chatId: Options) {
@@ -46,8 +47,9 @@ export const chatsStore = {
             if (xhr.status === 200) {
                 return JSON.parse(xhr.response);
             }
+            return xhr;
         }).catch((e) => {
-            throw new Error(e)
+            throw new Error(e);
         });
     }
-}
+};

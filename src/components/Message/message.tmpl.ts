@@ -5,4 +5,4 @@ export const tmpl = `
                   <p class="dialog__body-msg-time">{{time}}</p>
               </div>
             </div>
-`
+`;

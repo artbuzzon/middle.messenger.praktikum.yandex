@@ -9,6 +9,6 @@ const ERROR_MSGS = {
   EMAIL: 'Введите корректный email',
   PHONE: 'Введите корректный номер',
   TEXT: 'Добавьте минимум 5 символов'
-}
+};
 
 export {INPUT_TYPES, ERROR_MSGS};

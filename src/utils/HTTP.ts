@@ -1,4 +1,3 @@
-
 interface urlOptions {
     [key: string]: any
 }
@@ -18,11 +17,13 @@ enum METHODS {
     DELETE = 'DELETE'
 }
 
-const BASE_URL = 'https://ya-praktikum.tech/api/v2'
+
+const BASE_URL = 'https://ya-praktikum.tech/api/v2';
 
 function queryStringify(data: urlOptions = {}) {
     let str = '?';
-    for (let key in data) {
+    for (const key in data) {
+        // eslint-disable-next-line no-prototype-builtins
         if (data.hasOwnProperty(key))
             str += `${key}=${data[key]}&`;
     }
@@ -31,29 +32,31 @@ function queryStringify(data: urlOptions = {}) {
 
 export class HTTP {
     slug: string;
+    baseUrl: string;
 
 
-    constructor(slug: string) {
-        this.slug = slug
+    constructor(slug: string, baseUrl: string = BASE_URL) {
+        this.slug = slug;
+        this.baseUrl = baseUrl;
     }
 
     get(url: string, options: OptionsWithoutMethod = {}): Promise<XMLHttpRequest> {
         if (options.data) {
-            url += queryStringify(options.data)
+            url += queryStringify(options.data);
         }
 
         return this.request(url, {...options, method: METHODS.GET});
-    };
+    }
 
-    post = (url: string, options: OptionsWithoutMethod = {}) => {
+    post = (url: string, options: OptionsWithoutMethod = {}): Promise<XMLHttpRequest> => {
         return this.request(url, {...options, method: METHODS.POST}, options.timeout);
     };
 
-    put = (url: string, options: OptionsWithoutMethod = {}) => {
+    put = (url: string, options: OptionsWithoutMethod = {}): Promise<XMLHttpRequest> => {
         return this.request(url, {...options, method: METHODS.PUT}, options.timeout);
     };
 
-    delete = (url: string, options: OptionsWithoutMethod = {}) => {
+    delete = (url: string, options: OptionsWithoutMethod = {}): Promise<XMLHttpRequest> => {
         return this.request(url, {...options, method: METHODS.DELETE}, options.timeout);
     };
 
@@ -61,7 +64,7 @@ export class HTTP {
         const {method, data} = options;
         return new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest();
-            xhr.open(method, BASE_URL+ this.slug + url);
+            xhr.open(method, this.baseUrl + this.slug + url);
 
             xhr.onload = function () {
                 resolve(xhr);
@@ -69,7 +72,7 @@ export class HTTP {
 
             xhr.withCredentials = true;
 
-            xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
             xhr.timeout = timeout;
 
             xhr.onabort = reject;
@@ -78,8 +81,8 @@ export class HTTP {
             if (method === METHODS.GET || !data) {
                 xhr.send();
             } else {
-                xhr.send(data);
+                xhr.send(JSON.stringify(data));
             }
         });
-    };
+    }
 }

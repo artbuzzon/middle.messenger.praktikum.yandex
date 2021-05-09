@@ -1,5 +1,5 @@
-import {BaseAPI} from "../utils/BaseApi";
-import {HTTP} from "../utils/HTTP";
+import {BaseAPI} from '../utils/BaseApi';
+import {HTTP} from '../utils/HTTP';
 
 const authAPIInstance = new HTTP('/auth');
 
@@ -13,7 +13,7 @@ export class AuthAPI extends BaseAPI {
     }
 
     signin(payload: Options) {
-        return authAPIInstance.post('/signin', payload);
+        return authAPIInstance.post('/signin', {data: payload});
     }
 
     getUser() {

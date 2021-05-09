@@ -6,7 +6,8 @@
   "require": [
     "ts-node/register",
     "test/babel-register.js",
-    "ignore-styles"
+    "ignore-styles",
+    "ts-node/register"
   ],
   "TS_NODE_FILES" : true,
   "TS_NODE_TRANSPILE_ONLY": true,

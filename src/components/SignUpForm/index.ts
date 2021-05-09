@@ -1,11 +1,11 @@
-import Block from "../../utils/Block";
-import {tmpl as InputTmpl} from "../Input/input.tmpl";
-import {ERROR_MSGS, INPUT_TYPES} from "../../utils/consts";
-import {getUuid} from "../../utils/utils";
-import DOMWorker from "../../utils/DOMWorker";
-import Input from "../Input/input";
-import {tmpl} from "./signup-form.tmpl";
-import {authStore} from "../../store/auth.store";
+import Block from '../../utils/Block';
+import {tmpl as InputTmpl} from '../Input/input.tmpl';
+import {ERROR_MSGS, INPUT_TYPES} from '../../utils/consts';
+import {getUuid, sanitizeHTML} from '../../utils/utils';
+import DOMWorker from '../../utils/DOMWorker';
+import Input from '../Input/input';
+import {tmpl} from './signup-form.tmpl';
+import {authStore} from '../../store/auth.store';
 
 interface Options {
     [key: string]: any,
@@ -76,16 +76,16 @@ const fields = [
 
 export class SignUpForm extends Block {
     constructor() {
-        super("div", tmpl);
+        super('div', tmpl);
     }
 
     render() {
-        const containerEl = DOMWorker.createEl('div')
-        containerEl.setAttribute('data-component', 'signup-form')
+        const containerEl = DOMWorker.createEl('div');
+        containerEl.setAttribute('data-component', 'signup-form');
 
         fields.forEach(input => {
-            containerEl.append(input.getContent())
-        })
+            containerEl.append(input.getContent());
+        });
         return containerEl;
     }
 
@@ -96,7 +96,7 @@ export class SignUpForm extends Block {
 
         rootEl.addEventListener('blur', (e) => {
             this.updateValue(e);
-        }, true)
+        }, true);
 
 
         rootEl.addEventListener('click', (e) => {
@@ -106,30 +106,30 @@ export class SignUpForm extends Block {
                 let isFormValid = true;
                 fields.forEach(field => {
                     if (!field._isValid) {
-                        field.componentDidUpdate(field.props)
+                        field.componentDidUpdate(field.props);
                         isFormValid = false;
                     }
-                })
+                });
                 if (isFormValid) {
-                    const payload = this.preparePayload()
+                    const payload = this.preparePayload();
                     authStore.signup(payload).then(() => {
-                        window.location.href = '/'
-                    })
+                        window.location.href = '/';
+                    });
                 }
             }
-        })
+        });
     }
 
     preparePayload() {
-        const payload = {}
+        const payload = {};
         fields.forEach(field => {
             if (field.props.inputUuid === 'password_repeat') {
-                return
+                return;
             }
             // @ts-ignore
-            payload[field.props.inputUuid] = field.props.value
-        })
-        return payload
+            payload[field.props.inputUuid] = sanitizeHTML(field.props.value);
+        });
+        return payload;
     }
 
     updateValue(e: FocusEvent) {

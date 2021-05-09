@@ -23,20 +23,20 @@ export default class DOMWorker {
         return !!el;
     }
 
-    static append(query: string, element: HTMLElement) {
+    static append(query: string, element: HTMLElement): HTMLElement {
         const root = this.getEl(query);
         root.appendChild(element);
         return root;
     }
 
     static createEl(el: string): HTMLElement {
-        return document.createElement(el)
+        return document.createElement(el);
     }
 
-    static getEls(ids: string[]) {
+    static getEls(ids: string[]): HTMLElement[] {
         return ids.map(id => {
-            return DOMWorker.getEl(id)
-        })
+            return DOMWorker.getEl(id);
+        });
     }
 
 }

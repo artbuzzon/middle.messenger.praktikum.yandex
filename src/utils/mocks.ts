@@ -48,4 +48,4 @@ export const messages = [
         message: 'Vivamus suscipit tortor eget felis porttitor volutpat.',
         time: '5:35'
     },
-]
+];

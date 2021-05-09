@@ -1,5 +1,5 @@
-import Block from "../../utils/Block";
-import Baki from "../../utils/Baki";
+import Block from '../../utils/Block';
+import Baki from '../../utils/Baki';
 
 class ChatAttachDropdown extends Block {
     constructor(tmpl: string, props: Options = {}) {

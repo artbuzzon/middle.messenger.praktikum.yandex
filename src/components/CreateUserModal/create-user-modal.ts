@@ -1,8 +1,8 @@
-import Block from "../../utils/Block";
-import Baki from "../../utils/Baki";
-import './create-user-modal.scss'
-import DOMWorker from "../../utils/DOMWorker";
-import {chatsStore} from "../../store/chat.store";
+import Block from '../../utils/Block';
+import Baki from '../../utils/Baki';
+import './create-user-modal.scss';
+import DOMWorker from '../../utils/DOMWorker';
+import {chatsStore} from '../../store/chat.store';
 
 interface Options {
     [key: string]: any,
@@ -33,18 +33,18 @@ class CreateUserModal extends Block {
             const nameEl = e.target.dataset.name;
 
             if (nameEl === 'create-user-btn') {
-                const input = DOMWorker.getEl('[data-name="create-user-input"]') as HTMLInputElement
+                const input = DOMWorker.getEl('[data-name="create-user-input"]') as HTMLInputElement;
                 const payload = {
                     users: [
                         input.value
                     ],
                     chatId: 0 //TODO
-                }
-                chatsStore.addUsersToChat(JSON.stringify(payload))
+                };
+                chatsStore.addUsersToChat(JSON.stringify(payload));
             }
 
 
-        })
+        });
     }
 
 }

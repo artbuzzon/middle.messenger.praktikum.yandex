@@ -19,15 +19,14 @@
     "typeRoots": [
       "./node_modules/@types",
       "./typings",
-      "src/utils/types.d.ts"
     ]
   },
   "include": [
-//    "src/**/*",
+    "src/**/*",
     "test/*.spec.ts"
   ],
   "exclude": [
     "node_modules",
-    "src/**/*"
+//    "src/**/*"
   ]
 }

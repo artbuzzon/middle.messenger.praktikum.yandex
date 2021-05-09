@@ -1,4 +1,4 @@
-import {AuthAPI} from "../api/AuthApi";
+import {AuthAPI} from '../api/AuthApi';
 
 interface Options {
     [key: string]: any,
@@ -11,34 +11,36 @@ export const authStore = {
             id: ''
         }
     },
-    signup(payload: Options) {
+    signup(payload: Options): Promise<XMLHttpRequest> {
         return new AuthAPI().signup(payload).then((xhr) => {
             if (xhr.status === 200) {
                 this.state.userId = JSON.parse(xhr.response);
             }
+            return xhr;
         }).catch((e) => {
-            throw new Error(e)
+            throw new Error(e);
         });
     },
 
-    signin(payload: Options) {
+    signin(payload: Options): Promise<number> {
         return new AuthAPI().signin(payload).then((xhr) => xhr.status)
             .catch((e) => {
-                throw new Error(e)
+                throw new Error(e);
             });
     },
 
-    getUser() {
+    getUser(): Promise<XMLHttpRequest> {
         return new AuthAPI().getUser().then((xhr) => {
             if (xhr.status === 200) {
                 this.state.user = JSON.parse(xhr.response);
             }
+            return xhr;
         }).catch((e) => {
-            throw new Error(e)
+            throw new Error(e);
         });
     },
 
-    logout() {
-        return new AuthAPI().logout()
+    logout(): Promise<XMLHttpRequest> {
+        return new AuthAPI().logout();
     },
-}
+};

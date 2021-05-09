@@ -1,6 +1,6 @@
-import {isEqual} from "./utils";
-import Block from "./Block";
-import ComponentRegistry from "./ComponentRegistry";
+import {isEqual} from './utils';
+import Block from './Block';
+import ComponentRegistry from './ComponentRegistry';
 
 interface Options {
     [key: string]: any,
@@ -19,30 +19,29 @@ export default class Route {
         this._props = props;
     }
 
-    navigate(pathname: string) {
+    navigate(pathname: string): void {
         if (this.match(pathname)) {
             this._pathname = pathname;
             this.render();
         }
     }
 
-    leave() {
+    leave(): void {
         if (this._block) {
             this._block.hide();
         }
     }
 
-    match(pathname: string) {
+    match(pathname: string): boolean {
         return isEqual(pathname, this._pathname);
     }
 
-    render() {
+    render(): void {
         if (!this._block) {
             // @ts-ignore
             this._block = new this._blockClass();
             const componentRegistry = new ComponentRegistry();
-            componentRegistry.renderRoot('#root', this._block?.getContent())
-            return;
+            componentRegistry.renderRoot('#root', this._block?.getContent());
         }
     }
 }

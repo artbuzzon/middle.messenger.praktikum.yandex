@@ -1,5 +1,5 @@
-import {BaseAPI} from "../utils/BaseApi";
-import {HTTP} from "../utils/HTTP";
+import {BaseAPI} from '../utils/BaseApi';
+import {HTTP} from '../utils/HTTP';
 
 interface Options {
     [key: string]: any,
@@ -17,13 +17,13 @@ export class ChatsAPI extends BaseAPI {
     }
 
     addUsersToChat(payload: string) {
-        return chatAPIInstance.put('/users', {data: payload})
+        return chatAPIInstance.put('/users', {data: payload});
     }
 
     deleteUsersFromChat(payload: Options) {
-        return chatAPIInstance.delete('/users', {data: payload})
+        return chatAPIInstance.delete('/users', {data: payload});
     }
     getToken(chatId: Options) {
-        return chatAPIInstance.post('/token/' + chatId)
+        return chatAPIInstance.post('/token/' + chatId);
     }
 }

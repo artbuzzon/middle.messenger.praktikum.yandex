@@ -3,10 +3,10 @@ import '../../styles/fonts.scss';
 import '../../styles/global.scss';
 import './signin.scss';
 import '../../components/Input/input.scss';
-import Block from "../../utils/Block";
-import {tmpl} from "./signin.tmpl";
-import Baki from "../../utils/Baki";
-import DOMWorker from "../../utils/DOMWorker";
+import Block from '../../utils/Block';
+import {tmpl} from './signin.tmpl';
+import Baki from '../../utils/Baki';
+import DOMWorker from '../../utils/DOMWorker';
 
 interface Options {
     [key: string]: any,
@@ -25,12 +25,16 @@ export class SignIn extends Block {
         super.componentDidMount(oldProps);
 
         const rootEl = DOMWorker.getEl('#root');
-        rootEl.addEventListener('click', (e) => {
+        rootEl.addEventListener('click', (e: MouseEvent) => {
             e.preventDefault();
-          // @ts-ignore
-            if (e.target.dataset.name === 'go-signup') {
-                window.location.href = '/signup'
+
+            if (!(e.target instanceof HTMLElement)) {
+                return;
             }
-        })
+
+            if (e.target.dataset.name === 'go-signup') {
+                window.location.href = '/signup';
+            }
+        });
     }
 }

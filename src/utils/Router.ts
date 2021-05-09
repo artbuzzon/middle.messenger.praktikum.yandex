@@ -1,4 +1,4 @@
-import Route from "./Route";
+import Route from './Route';
 
 export default class Router {
     routes: Route[];
@@ -21,14 +21,14 @@ export default class Router {
         Router.__instance = this;
     }
 
-    use(pathname: string, block: any) {
+    use(pathname: string, block: any): Router {
         const route = new Route(pathname, block, {rootQuery: this._rootQuery});
 
         this.routes.push(route);
         return this;
     }
 
-    start() {
+    start(): void {
         // Реагируем на изменения в адресной строке и вызываем перерисовку
         window.onpopstate = () => {
             this._onRoute(window.location.pathname);
@@ -37,7 +37,7 @@ export default class Router {
         this._onRoute(window.location.pathname);
     }
 
-    _onRoute(pathname: string) {
+    _onRoute(pathname: string): void {
         const route = this.getRoute(pathname);
         if (!route) {
             return;
@@ -49,16 +49,16 @@ export default class Router {
         route.render();
     }
 
-    getCurrentRoute() {
+    getCurrentRoute(): Route | null {
         return this._currentRoute;
     }
 
-    go(pathname: string) {
-        this.history.pushState({}, "", pathname);
+    go(pathname: string): void {
+        this.history.pushState({}, '', pathname);
         this._onRoute(pathname);
     }
 
-    getRoute(pathname: string) {
+    getRoute(pathname: string): Route | undefined  {
         return this.routes.find(route => route.match(pathname));
     }
 }

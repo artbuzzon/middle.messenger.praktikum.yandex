@@ -1,41 +1,81 @@
-import sinon from "sinon";
+import * as sinon from "sinon";
 import {HTTP} from "../src/utils/HTTP";
-import {expect} from "chai";
+import * as chai from "chai";
 
-global.XMLHttpRequest = sinon.useFakeXMLHttpRequest();
+chai.should()
+
+const BASE_URL = 'https://httpbin.org'
+const slug = '/anything'
+const HTTPRequest = new HTTP(slug, BASE_URL)
+
 
 describe('MyAPI', function () {
     beforeEach(function () {
+        // @ts-ignore
         global.XMLHttpRequest = sinon.useFakeXMLHttpRequest();
+
+        // @ts-ignore
         this.requests = [];
-        this.xhr.onCreate = function (xhr) {
+        // @ts-ignore
+        XMLHttpRequest.onCreate = function (xhr) {
             this.requests.push(xhr);
         }.bind(this);
     });
 
     afterEach(function () {
-        this.xhr.restore();
+        // @ts-ignore
+        XMLHttpRequest.restore();
     });
 
     it('should parse the fetched response data as JSON', function (done) {
         const data = {foo: 'bar'};
         const dataJson = JSON.stringify(data);
 
-        new HTTP('/chats').get('').then((response) => {
-            console.log('response')
-            response.should.deep.equal(data);
-            done();
-        });
-        console.log(this.requests)
+        HTTPRequest.get('', {data})
+            .then((response) => {
+                const data = JSON.parse(response.responseText)
+                data.should.deep.equal(data);
+                done();
+            });
         this.requests[0].respond(200, {'Content-Type': 'text/json'}, dataJson);
     });
 
-    it('should post the given response data as JSON body', function() {
-        var data = { hello: 'world' };
-        var dataJson = JSON.stringify(data);
+    it('should post the given response data as JSON body', function (done) {
+        const data = {hello: 'world'};
+        const dataJson = JSON.stringify(data);
 
-        new HTTP('/chats').post(data, function() { });
+        HTTPRequest.post('', {data})
+            .then((response) => {
+                const data = JSON.parse(response.responseText)
+                data.should.deep.equal(data);
+                done();
+            });
+        this.requests[0].respond(200, {'Content-Type': 'text/json'}, dataJson)
+    });
 
-        this.requests[0].requestBody.should.equal(dataJson);
+    it('should delete the given data', function (done) {
+        const data = {user: 123};
+        const dataJson = JSON.stringify(data);
+
+        HTTPRequest.delete('', {data})
+            .then((response) => {
+                const data = JSON.parse(response.responseText)
+                data.should.deep.equal(data);
+                done();
+            });
+        this.requests[0].respond(200, {'Content-Type': 'text/json'}, dataJson)
+    });
+
+    it('should put the given data', function (done) {
+        const data = {name: 'Bob'};
+        const dataJson = JSON.stringify(data);
+
+        HTTPRequest.put('', {data})
+            .then((response) => {
+                const data = JSON.parse(response.responseText)
+                data.should.deep.equal(data);
+                done();
+            });
+        this.requests[0].respond(200, {'Content-Type': 'text/json'}, dataJson)
     });
 });

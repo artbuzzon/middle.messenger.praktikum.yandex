@@ -1,40 +1,38 @@
-import Block from "../../utils/Block";
-import Baki from "../../utils/Baki";
+import Block from '../../utils/Block';
+import Baki from '../../utils/Baki';
 import './chat-preview';
-import {tmpl} from './chat-preview.tmpl'
-import DOMWorker from "../../utils/DOMWorker";
-import {chatsStore} from "../../store/chat.store";
+import {tmpl} from './chat-preview.tmpl';
+import DOMWorker from '../../utils/DOMWorker';
+import {chatsStore} from '../../store/chat.store';
 
 
 class ChatPreview extends Block {
     constructor() {
-        super("div", tmpl, {chats: []});
+        super('div', tmpl, {chats: []});
     }
 
     componentDidMount() {
         chatsStore.getChats().then((chats) => {
-            // @ts-ignore
-            chats.forEach(chat => {
-                chat.last_message = JSON.parse(chat.last_message)
-            })
+            chats.forEach((chat: any) => {
+                chat.last_message = JSON.parse(chat.last_message);
+            });
             this.props.chats.push(...chats);
-            this.setProps({chats: chats})
-        })
+            this.setProps({chats: chats});
+        });
     }
 
 
     render() {
-        const containerEl = DOMWorker.createEl('div')
-        containerEl.setAttribute('data-component', 'chat-preview')
+        const containerEl = DOMWorker.createEl('div');
+        containerEl.setAttribute('data-component', 'chat-preview');
 
         // if (DOMWorker.isInDom('[data-component="chat-preview"]')) {
         // DOMWorker.getEl('[data-component="chat-preview"]').remove()
         // }
-
         // @ts-ignore
         this.props.chats.forEach(chat => {
-            containerEl.append(new Baki(this.tmpl).compileTemplate(chat))
-        })
+            containerEl.append(new Baki(this.tmpl).compileTemplate(chat));
+        });
         return containerEl;
     }
 }

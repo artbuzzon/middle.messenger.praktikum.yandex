@@ -2,7 +2,7 @@
 * Curly templator for real web-monkeys
 * */
 
-import DOMWorker from "./DOMWorker";
+import DOMWorker from './DOMWorker';
 
 interface Options {
     [key: string]: any,
@@ -16,7 +16,7 @@ export default class Baki {
         this._template = template;
     }
 
-    compileTemplate(ctx: Options) {
+    compileTemplate(ctx: Options): HTMLElement {
         let tmpl = this._template;
         let key = null;
         const regExp = this.TEMPLATE_REGEXP;
@@ -43,7 +43,7 @@ export default class Baki {
         const keys = path.split('.');
 
         let result = obj;
-        for (let key of keys) {
+        for (const key of keys) {
             if (result[key] !== null) {
                 result = result[key];
             }
