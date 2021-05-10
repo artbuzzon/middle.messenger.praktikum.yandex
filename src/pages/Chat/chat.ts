@@ -17,6 +17,7 @@ import CreateChatModal from '../../components/CreateChatModal/create-chat-modal'
 import {chatsStore} from '../../store/chat.store';
 import {getSocketConnection} from '../../api/SocketApi';
 import Message from '../../components/Message/message';
+import {sanitizeHTML} from '../../utils/utils';
 
 interface Options {
     [key: string]: any,
@@ -61,52 +62,52 @@ class Chat extends Block {
             } else { // @ts-ignore
                 if (nameEl === 'chat-preview' || e.target.parentNode.parentNode.dataset.name === 'chat-preview') { //TODO refactor
 
-                                const messagesParentEl = DOMWorker.getEl('.dialog__body');
-                                if (messagesParentEl.children[0]) {
-                                    messagesParentEl.children[0].remove();
-                                }
+                    const messagesParentEl = DOMWorker.getEl('.dialog__body');
+                    if (messagesParentEl.children[0]) {
+                        messagesParentEl.children[0].remove();
+                    }
 
 
                     // @ts-ignore
                     const chatId = e.target.dataset.chatId || e.target.parentNode.parentNode.dataset.chatId; //TODO refactor
-                                const userId = authStore.state.user.id;
-                                chatsStore.getToken(chatId).then(({token}) => {
-                                    this.socket = getSocketConnection(userId, chatId, token);
-                                    this.socket.addEventListener('open', () => {
-                                        this.socket.send(JSON.stringify({
-                                            content: '0',
-                                            type: 'get old',
-                                        }));
-                                    });
+                    const userId = authStore.state.user.id;
+                    chatsStore.getToken(chatId).then(({token}) => {
+                        this.socket = getSocketConnection(userId, chatId, token);
+                        this.socket.addEventListener('open', () => {
+                            this.socket.send(JSON.stringify({
+                                content: '0',
+                                type: 'get old',
+                            }));
+                        });
 
 
-                                    this.socket.addEventListener('close', event => {
-                                        if (event.wasClean) {
-                                            console.log('Соединение закрыто чисто');
-                                        } else {
-                                            console.log('Обрыв соединения');
-                                        }
-
-                                        console.log(`Код: ${event.code} | Причина: ${event.reason}`);
-                                    });
-
-                                    this.socket.addEventListener('message', event => {
-                                        const data = JSON.parse(event.data);
-                                        const chats = Array.isArray(data) ? data : [data];
-                                        messagesParentEl.append(new Message({chats}).getContent());
-                                    });
-
-                                });
-                            } else if (nameEl === 'send-msg-btn') {
-                                const inputEl = DOMWorker.getEl('[data-name="message-input"]') as HTMLInputElement;
-                                if (inputEl.value) {
-                                    this.socket.send(JSON.stringify({
-                                        content: inputEl.value,
-                                        type: 'message',
-                                    }));
-                                    inputEl.value = '';
-                                }
+                        this.socket.addEventListener('close', event => {
+                            if (event.wasClean) {
+                                console.log('Соединение закрыто чисто');
+                            } else {
+                                console.log('Обрыв соединения');
                             }
+
+                            console.log(`Код: ${event.code} | Причина: ${event.reason}`);
+                        });
+
+                        this.socket.addEventListener('message', event => {
+                            const data = JSON.parse(event.data);
+                            const chats = Array.isArray(data) ? data : [data];
+                            messagesParentEl.append(new Message({chats}).getContent());
+                        });
+
+                    });
+                } else if (nameEl === 'send-msg-btn') {
+                    const inputEl = DOMWorker.getEl('[data-name="message-input"]') as HTMLInputElement;
+                    if (inputEl.value) {
+                        this.socket.send(JSON.stringify({
+                            content: sanitizeHTML(inputEl.value),
+                            type: 'message',
+                        }));
+                        inputEl.value = '';
+                    }
+                }
             }
         });
     }

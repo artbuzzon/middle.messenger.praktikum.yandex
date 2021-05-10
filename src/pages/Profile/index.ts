@@ -40,23 +40,16 @@ class Profile extends Block {
                 return;
             }
 
-
             if (e.target.dataset.name === 'logout') {
                 authStore.logout().then(() => {
                     window.location.href = '/signin';
                 });
-            } else {
-                if (e.target.dataset.name === 'goback') {
-                    window.location.href = '/';
-                } else {
-                    if (e.target.dataset.name === 'change-data') {
-                        window.location.href = '/profile-user-data';
-                    } else {
-                        if (e.target.dataset.name === 'change-password') {
-                            window.location.href = '/profile-password';
-                        }
-                    }
-                }
+            } else if (e.target.dataset.name === 'goback') {
+                window.location.href = '/';
+            } else if (e.target.dataset.name === 'change-data') {
+                window.location.href = '/profile-user-data';
+            } else if (e.target.dataset.name === 'change-password') {
+                window.location.href = '/profile-password';
             }
         });
     }

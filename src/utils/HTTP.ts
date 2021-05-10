@@ -17,7 +17,8 @@ enum METHODS {
     DELETE = 'DELETE'
 }
 
-
+const REQUEST_TIME_LIMIT = 200;
+const REQUEST_START_TIME = 0;
 const BASE_URL = 'https://ya-praktikum.tech/api/v2';
 
 function queryStringify(data: urlOptions = {}) {
@@ -33,11 +34,13 @@ function queryStringify(data: urlOptions = {}) {
 export class HTTP {
     slug: string;
     baseUrl: string;
+    lastRequestCall: number;
 
 
     constructor(slug: string, baseUrl: string = BASE_URL) {
         this.slug = slug;
         this.baseUrl = baseUrl;
+        this.lastRequestCall = REQUEST_START_TIME;
     }
 
     get(url: string, options: OptionsWithoutMethod = {}): Promise<XMLHttpRequest> {
@@ -63,6 +66,14 @@ export class HTTP {
     request(url: string, options: ApiOptions = {method: METHODS.GET}, timeout = 1500): Promise<XMLHttpRequest> {
         const {method, data} = options;
         return new Promise((resolve, reject) => {
+
+            //DOS prevention
+            const now = Date.now();
+            if (now - this.lastRequestCall < REQUEST_TIME_LIMIT) {
+                reject('Too many requests');
+            }
+            this.lastRequestCall = now;
+
             const xhr = new XMLHttpRequest();
             xhr.open(method, this.baseUrl + this.slug + url);
 
