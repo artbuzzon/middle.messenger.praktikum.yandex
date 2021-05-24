@@ -1,13 +1,39 @@
-import Block from "../../utils/Block";
-import Baki from "../../utils/Baki";
+import Block from '../../utils/Block';
+import Baki from '../../utils/Baki';
+import './chat-preview';
+import {tmpl} from './chat-preview.tmpl';
+import DOMWorker from '../../utils/DOMWorker';
+import {chatsStore} from '../../store/chat.store';
+
 
 class ChatPreview extends Block {
-    constructor(tmpl: string, props: Options) {
-        super("div", tmpl, props);
+    constructor() {
+        super('div', tmpl, {chats: []});
     }
 
+    componentDidMount() {
+        chatsStore.getChats().then((chats) => {
+            chats.forEach((chat: any) => {
+                chat.last_message = JSON.parse(chat.last_message);
+            });
+            this.props.chats.push(...chats);
+            this.setProps({chats: chats});
+        });
+    }
+
+
     render() {
-        return new Baki(this.tmpl).compileTemplate(this.props);
+        const containerEl = DOMWorker.createEl('div');
+        containerEl.setAttribute('data-component', 'chat-preview');
+
+        // if (DOMWorker.isInDom('[data-component="chat-preview"]')) {
+        // DOMWorker.getEl('[data-component="chat-preview"]').remove()
+        // }
+        // @ts-ignore
+        this.props.chats.forEach(chat => {
+            containerEl.append(new Baki(this.tmpl).compileTemplate(chat));
+        });
+        return containerEl;
     }
 }
 

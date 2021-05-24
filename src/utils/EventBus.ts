@@ -1,4 +1,10 @@
 
+interface Listener {
+    [key: string]: SubscriberFun[]
+}
+
+type SubscriberFun = (...args: any) => void;
+
 class EventBus {
     listeners: Listener;
 
@@ -6,7 +12,7 @@ class EventBus {
         this.listeners = {};
     }
 
-    on(event: string, callback: Function) {
+    on(event: string, callback: SubscriberFun): void {
         if (!this.listeners[event]) {
             this.listeners[event] = [];
         }
@@ -14,7 +20,7 @@ class EventBus {
         this.listeners[event].push(callback);
     }
 
-    off(event: string, callback: Function) {
+    off(event: string, callback: SubscriberFun): void {
         if (!this.listeners[event]) {
             throw new Error(`Нет события: ${event}`);
         }
@@ -24,7 +30,7 @@ class EventBus {
         );
     }
 
-    emit(event: string, ...args: any[]) {
+    emit(event: string, ...args: any[]): void {
         if (!this.listeners[event]) {
             throw new Error(`Нет события: ${event}`);
         }
@@ -35,4 +41,4 @@ class EventBus {
     }
 }
 
-export default EventBus
+export default EventBus;

@@ -1,6 +1,10 @@
 import DOMWorker from './DOMWorker';
 import Baki from './Baki';
 
+interface Options {
+    [key: string]: any,
+}
+
 export class NodeCreator {
     constructor(tmpl: string, root?: string) {
         this.root = root;
@@ -13,30 +17,23 @@ export class NodeCreator {
     root?: string;
     html: string;
 
-    insertToDom() {
+    insertToDom(): void {
         if (this.root) {
             const domNode = DOMWorker.getEl(this.root);
-            console.log(domNode, this.node)
             domNode.append(this.node);
         } else {
-            throw new Error('No root defined in NodeCreator')
+            throw new Error('No root defined in NodeCreator');
         }
     }
 
-    htmlToElement(html: string): HTMLElement {
-        const template = DOMWorker.createEl('template') as HTMLTemplateElement;
-        html = html.trim();
-        template.innerHTML = html;
-        return <HTMLElement>template.content.firstChild;
-    }
 
-    createChild(data: Options) {
+    createChild(data: Options): NodeCreator {
         const htmlWithData = this.getHtml(data);
-        this.node.append(this.htmlToElement(htmlWithData));
+        this.node.append(htmlWithData);
         return this;
     }
 
-    getHtml(data: Options) {
+    getHtml(data: Options): HTMLElement {
         return new Baki(this.html).compileTemplate(data);
     }
 }

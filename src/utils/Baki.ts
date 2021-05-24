@@ -2,6 +2,12 @@
 * Curly templator for real web-monkeys
 * */
 
+import DOMWorker from './DOMWorker';
+
+interface Options {
+    [key: string]: any,
+}
+
 export default class Baki {
     TEMPLATE_REGEXP = /\{\{(.*?)\}\}/gi;
     _template: string;
@@ -10,7 +16,7 @@ export default class Baki {
         this._template = template;
     }
 
-    compileTemplate(ctx: Options) {
+    compileTemplate(ctx: Options): HTMLElement {
         let tmpl = this._template;
         let key = null;
         const regExp = this.TEMPLATE_REGEXP;
@@ -23,21 +29,30 @@ export default class Baki {
             }
         }
 
-        return tmpl;
+        return this.getDomNode(tmpl);
+    }
+
+    getDomNode(tmpl: string): HTMLElement {
+        const template = DOMWorker.createEl('template') as HTMLTemplateElement;
+        tmpl = tmpl.trim();
+        template.innerHTML = tmpl;
+        return <HTMLElement>template.content.firstChild;
     }
 
     getValue(obj: Options, path: string, defaultValue = ''): string {
         const keys = path.split('.');
 
         let result = obj;
-        for (let key of keys) {
-            result = result[key];
+        for (const key of keys) {
+            if (result[key] !== null) {
+                result = result[key];
+            }
 
             if (result === undefined) {
                 return defaultValue;
             }
         }
 
-        return result.toString() ?? defaultValue;
+        return String(result) ?? defaultValue;
     }
 }

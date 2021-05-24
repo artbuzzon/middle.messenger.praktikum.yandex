@@ -1,7 +1,7 @@
-import './create-user-modal.scss';
+import './delete-user-modal.scss';
 import './input';
-import DOMWorker from "../../utils/DOMWorker";
-import Input from "./input";
-import {tmpl} from "./input.tmpl";
+import DOMWorker from '../../utils/DOMWorker';
+import Input from './input';
+import {tmpl} from './input.tmpl';
 
 
