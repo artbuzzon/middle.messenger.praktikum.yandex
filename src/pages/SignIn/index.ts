@@ -2,105 +2,39 @@ import '../../styles/reset.scss';
 import '../../styles/fonts.scss';
 import '../../styles/global.scss';
 import './signin.scss';
-import DOMWorker from "../../utils/DOMWorker";
-import {tmpl as signInTmpl} from "./signin.tmpl";
-import {getUuid} from "../../utils/utils";
-import Form from "../../utils/Form";
-import Input from "../../components/Input/input";
-import {tmpl as InputTmpl} from "../../components/Input/input.tmpl";
-import {ERROR_MSGS, INPUT_TYPES} from "../../utils/consts";
 import '../../components/Input/input.scss';
+import Block from '../../utils/Block';
+import {tmpl} from './signin.tmpl';
+import Baki from '../../utils/Baki';
+import DOMWorker from '../../utils/DOMWorker';
 
-const signInPage = new Form(signInTmpl, {
-    btnUuid: getUuid()
-})
-DOMWorker.append('#root', signInPage.getContent());
-
-const fields = [new Input(InputTmpl, {
-    label: 'Почта',
-    value: '',
-    type: INPUT_TYPES.EMAIL,
-    placeholder: '@ivanivanov',
-    errorMessage: ERROR_MSGS.EMAIL,
-    inputUuid: getUuid(),
-    errorMessageUuid: getUuid(),
-}), new Input(InputTmpl, {
-    label: 'Логин',
-    value: '',
-    type: INPUT_TYPES.TEXT,
-    placeholder: 'login',
-    errorMessage: ERROR_MSGS.TEXT,
-    inputUuid: getUuid(),
-    errorMessageUuid: getUuid(),
-}), new Input(InputTmpl, {
-    label: 'Имя',
-    value: '',
-    type: INPUT_TYPES.TEXT,
-    placeholder: 'ivan',
-    errorMessage: ERROR_MSGS.TEXT,
-    inputUuid: getUuid(),
-    errorMessageUuid: getUuid(),
-}), new Input(InputTmpl, {
-    label: 'Фамилия',
-    value: '',
-    type: INPUT_TYPES.TEXT,
-    placeholder: 'ivanov',
-    errorMessage: ERROR_MSGS.TEXT,
-    inputUuid: getUuid(),
-    errorMessageUuid: getUuid(),
-}), new Input(InputTmpl, {
-    label: 'Телефон',
-    value: '',
-    type: INPUT_TYPES.TEXT,
-    placeholder: 'phone number',
-    errorMessage: ERROR_MSGS.PHONE,
-    inputUuid: getUuid(),
-    errorMessageUuid: getUuid(),
-}), new Input(InputTmpl, {
-    label: 'Пассворд',
-    value: '',
-    type: INPUT_TYPES.PASS,
-    placeholder: 'password',
-    errorMessage: ERROR_MSGS.PASS,
-    inputUuid: getUuid(),
-    errorMessageUuid: getUuid(),
-}), new Input(InputTmpl, {
-    label: 'Пассворд (еще раз)',
-    value: '',
-    type: INPUT_TYPES.PASS,
-    placeholder: 'password',
-    errorMessage: ERROR_MSGS.PASS,
-    inputUuid: getUuid(),
-    errorMessageUuid: getUuid(),
-})];
-
-fields.forEach((field) => {
-    DOMWorker.append('[data-name="fields-container"]', field.getContent());
-})
-
-DOMWorker.getEl(`#root`).addEventListener('blur', (e) => {
-    updateValue(e);
-}, true)
-
-function updateValue(e: FocusEvent) {
-    const target = e.target as HTMLInputElement;
-    const inputField = fields.find(f => f.props.inputUuid === target.dataset.uuid);
-    if (inputField) {
-        inputField.props.value = target.value;
-    }
+interface Options {
+    [key: string]: any,
 }
 
-DOMWorker.getEl(`[data-uuid="${signInPage.props.btnUuid}"]`)
-    .addEventListener('click', (e) => {
-        e.preventDefault();
-        let isFormValid = true;
-        fields.forEach(field => {
-            if (!field._isValid) {
-                field.componentDidUpdate(field.props)
-                isFormValid = false;
+export class SignIn extends Block {
+    constructor(props: Options = {}) {
+        super('div', tmpl, props);
+    }
+
+    render() {
+        return new Baki(this.tmpl).compileTemplate(this.props);
+    }
+
+    componentDidMount(oldProps: Options) {
+        super.componentDidMount(oldProps);
+
+        const rootEl = DOMWorker.getEl('#root');
+        rootEl.addEventListener('click', (e: MouseEvent) => {
+            e.preventDefault();
+
+            if (!(e.target instanceof HTMLElement)) {
+                return;
             }
-        })
-        if (isFormValid) {
-            location.href = 'index.html'
-        }
-    })
+
+            if (e.target.dataset.name === 'go-signup') {
+                window.location.href = '/signup';
+            }
+        });
+    }
+}

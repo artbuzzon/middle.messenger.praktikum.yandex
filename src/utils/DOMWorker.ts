@@ -9,20 +9,34 @@ export default class DOMWorker {
         }
     }
 
-    static append(query: string, element: HTMLElement) {
+    static getAllEls(id: string): NodeListOf<HTMLElement> {
+        const els = document.querySelectorAll<HTMLElement>(id);
+        if (els) {
+            return els;
+        } else {
+            throw new Error(`There is no element with the id ${id} in the DOM`);
+        }
+    }
+
+    static isInDom(id: string): boolean {
+        const el = document.querySelector<HTMLElement>(id);
+        return !!el;
+    }
+
+    static append(query: string, element: HTMLElement): HTMLElement {
         const root = this.getEl(query);
         root.appendChild(element);
         return root;
     }
 
     static createEl(el: string): HTMLElement {
-        return document.createElement(el)
+        return document.createElement(el);
     }
 
-    static getEls(ids: string[]) {
+    static getEls(ids: string[]): HTMLElement[] {
         return ids.map(id => {
-            return DOMWorker.getEl(id)
-        })
+            return DOMWorker.getEl(id);
+        });
     }
 
 }

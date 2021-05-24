@@ -12,7 +12,12 @@
   padding: 20px 10px 0 10px;
   border-right: $borderStyle;
 
+  &__head {
+    text-align: end;
+  }
+
   &__profile-btn {
+    margin-top: 8px;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -37,6 +42,7 @@
   &__chat {
     display: flex;
     padding: 12px 0;
+    cursor: pointer;
     border-top: $borderStyle;
 
     &-avatar {

@@ -1,21 +1,30 @@
-import EventBus from "./EventBus";
-import DOMWorker from "./DOMWorker";
+import EventBus from './EventBus';
+import DOMWorker from './DOMWorker';
+
+interface Options {
+    [key: string]: any,
+}
+
+interface MetaData {
+    tagName: string,
+    props: Options
+}
 
 class Block {
     static EVENTS = {
-        INIT: "init",
-        FLOW_CDM: "flow:component-did-mount",
-        FLOW_CDU: "flow:component-did-update",
-        FLOW_RENDER: "flow:render"
+        INIT: 'init',
+        FLOW_CDM: 'flow:component-did-mount',
+        FLOW_CDU: 'flow:component-did-update',
+        FLOW_RENDER: 'flow:render'
     };
 
     props: Options;
-    eventBus: Function;
+    eventBus: any;
     _element: HTMLElement;
     _tmpl: string;
     _meta: MetaData;
 
-    constructor(tagName: string = "div", tmpl: string, props: Options = {}) {
+    constructor(tagName = 'div', tmpl: string, props: Options = {}) {
         const eventBus = new EventBus();
         this._meta = {
             tagName,
@@ -23,6 +32,7 @@ class Block {
         };
 
         this._tmpl = tmpl;
+
         this.props = this._makePropsProxy(props);
 
         this.eventBus = () => eventBus;
@@ -31,91 +41,91 @@ class Block {
         eventBus.emit(Block.EVENTS.INIT);
     }
 
-    _registerEvents(eventBus: EventBus) {
+    _registerEvents(eventBus: EventBus): void {
         eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
         eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
         eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
         eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
     }
 
-    _createResources() {
+    _createResources(): void {
         const {tagName} = this._meta;
         this._element = this._createDocumentElement(tagName);
     }
 
-    init() {
+    init(): void {
         this._createResources();
         this.eventBus().emit(Block.EVENTS.FLOW_CDM);
     }
 
-    _componentDidMount() {
-        this.componentDidMount();
+    _componentDidMount(): void {
         this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+        this.componentDidMount(this.props);
     }
 
-    // Может переопределять пользователь, необязательно трогать
-    componentDidMount(oldProps: Options) {
-        console.log(oldProps)
+    // eslint-disable-next-line
+    componentDidMount(_oldProps: Options) {
+        console.log(_oldProps);
     }
 
-    _componentDidUpdate(oldProps: Options, newProps: Options) {
+    _componentDidUpdate(oldProps: Options, newProps: Options): void {
         this.componentDidUpdate(oldProps, newProps);
         this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
 
-    // Может переопределять пользователь, необязательно трогать
-    componentDidUpdate(oldProps: Options, newProps: Options) {
-        console.log(oldProps, newProps)
+    // eslint-disable-next-line
+    componentDidUpdate(_oldProps: Options, _newProps: Options) {
+        console.log(_oldProps, _newProps);
         return true;
     }
 
-    _componentUpdate() {
+    _componentUpdate(): void {
         this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
 
-    componentUpdate() {
-    }
+    // eslint-disable-next-line
+    componentUpdate() {}
 
-    setProps = (nextProps: Options) => {
+    setProps = (nextProps: Options): void => {
         if (!nextProps) {
             return;
         }
         Object.assign(this.props, nextProps);
     };
 
-    get element() {
+    get element(): HTMLElement {
         return this._element;
     }
 
-    get tmpl() {
+    get tmpl(): string {
         return this._tmpl;
     }
 
-    _render() {
-        //TODO use fragment from NodeCreator
-        this._element.innerHTML = this.render();
+    _render(): void {
+        const node = this.render();
+        // @ts-ignore
+        this._element.append(node);
     }
 
-    // Может переопределять пользователь, необязательно трогать
-    render() {
-    }
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    render() {}
 
-    getContent() {
+    getContent(): HTMLElement {
         return this.element;
     }
 
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     _makePropsProxy(props: Options) {
-        // Можно и так передать this
-        // Такой способ больше не применяется с приходом ES6+
-        const self = this;
 
+        // eslint-disable-next-line @typescript-eslint/no-this-alias
+        const self = this;
         return new Proxy(props, {
-            set(props: Options, p: string, value) {
+            set(target: Options, p: string, value) {
                 if (p.indexOf('_') === 0) {
                     throw new Error('Нет прав');
                 } else {
-                    props[p] = value;
-                    self.eventBus().emit(Block.EVENTS.FLOW_CDU, props, this.props);
+                    target[p] = value;
+                    self.eventBus().emit(Block.EVENTS.FLOW_CDU, target, this.props);
                 }
                 return true;
             },
@@ -124,7 +134,7 @@ class Block {
                     throw new Error('Нет прав');
                 }
                 const value = target[prop];
-                return typeof value === "function" ? value.bind(target) : value;
+                return typeof value === 'function' ? value.bind(target) : value;
             },
             deleteProperty() {
                 throw new Error('Нет прав');
@@ -132,15 +142,15 @@ class Block {
         });
     }
 
-    _createDocumentElement(tagName: string) {
+    _createDocumentElement(tagName: string): HTMLElement {
         return DOMWorker.createEl(tagName);
     }
 
-    show() {
+    show(): void {
         this.element.style.display = 'block';
     }
 
-    hide() {
+    hide(): void {
         this.element.style.display = 'none';
     }
 }

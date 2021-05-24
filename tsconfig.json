@@ -3,12 +3,30 @@
     "module": "commonjs",
     "target": "es2015",
     "sourceMap": true,
+    "allowJs": true,
     "noImplicitAny": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "moduleResolution": "node",
     "strictNullChecks": true,
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "paths": {
+      "custom-module-type": [
+        "./src/utils/types.d.ts"
+      ]
+    },
+    "typeRoots": [
+      "./node_modules/@types",
+      "./typings",
+    ]
   },
+  "include": [
+    "src/**/*",
+    "test/*.spec.ts"
+  ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+//    "src/**/*"
   ]
 }

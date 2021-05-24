@@ -1,7 +1,7 @@
 export const tmpl =  `
 <div class="profile">
     <div class="profile__content-field">
-        <a href="index.html">Назад</a>
+        <a data-name="goback" href="/">Назад</a>
     </div>
     <ul class="profile__content">
         <li class="profile__content-avatar">
@@ -9,36 +9,36 @@ export const tmpl =  `
         <div data-name="fields-container"></div>
         <li class="profile__content-field">
             <span>Почта</span>
-            <span>pochta@yandex.ru</span>
+            <span>{{email}}</span>
         </li>
         <li class="profile__content-field">
             <span>Логин</span>
-            <span>ivanivanov</span>
+            <span>{{login}}</span>
         </li>
         <li class="profile__content-field">
             <span>Имя</span>
-            <span>Иван</span>
+            <span>{{first_name}}</span>
         </li>
         <li class="profile__content-field">
             <span>Фамилия</span>
-            <span>Иванов</span>
+            <span>{{second_name}}</span>
         </li>
         <li class="profile__content-field">
             <span>Имя в чате</span>
-            <span>Иван</span>
+            <span>{{display_name}}</span>
         </li>
         <li class="profile__content-field">
             <span>Телефон</span>
-            <span>+7 (909) 967 30 30</span>
+            <span>{{phone}}</span>
         </li>
         <div class="profile__content-field profile__content-field__center">
-            <a href="profile-user-data.html">Изменить данные</a>
+            <a data-name="change-data" href="profile-user-data">Изменить данные</a>
         </div>
         <div class="profile__content-field profile__content-field__center">
-            <a href="profile-password.html">Изменить пароль</a>
+            <a data-name="change-password" href="profile-password">Изменить пароль</a>
         </div>
-        <div class="profile__content-field profile__content-field__center">
-            <a href="index.html">Выйти</a>
+        <div  class="profile__content-field profile__content-field__center">
+            <a data-name="logout" href="/">Выйти</a>
         </div>
     </ul>
 </div>
