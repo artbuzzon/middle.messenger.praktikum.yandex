@@ -1,7 +1,7 @@
 export const tmpl = `
 <form name="form" class="profile" data-name="profile-form" method="POST">
     <div class="profile__content-field">
-        <a data-name="goback" href="profile">Назад</a>
+        <a data-navigation data-name="goback" href="profile">Назад</a>
     </div>
     <ul class="profile__content">
         <li class="profile__content-avatar">

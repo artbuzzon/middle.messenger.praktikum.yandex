@@ -1,7 +1,7 @@
 export const tmpl =  `
 <div class="profile">
     <div class="profile__content-field">
-        <a data-name="goback" href="/">Назад</a>
+        <a data-navigation data-name="goback" href="/">Назад</a>
     </div>
     <ul class="profile__content">
         <li class="profile__content-avatar">
@@ -32,13 +32,13 @@ export const tmpl =  `
             <span>{{phone}}</span>
         </li>
         <div class="profile__content-field profile__content-field__center">
-            <a data-name="change-data" href="profile-user-data">Изменить данные</a>
+            <a data-navigation data-name="change-data" href="profile-user-data">Изменить данные</a>
         </div>
         <div class="profile__content-field profile__content-field__center">
-            <a data-name="change-password" href="profile-password">Изменить пароль</a>
+            <a data-navigation data-name="change-password" href="profile-password">Изменить пароль</a>
         </div>
         <div  class="profile__content-field profile__content-field__center">
-            <a data-name="logout" href="/">Выйти</a>
+            <a data-navigation data-name="logout" href="/">Выйти</a>
         </div>
     </ul>
 </div>

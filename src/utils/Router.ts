@@ -1,5 +1,7 @@
 import Route from './Route';
 
+const NAV_A_SELECTOR = 'a[data-navigation]';
+
 export default class Router {
     routes: Route[];
     history: History;
@@ -30,18 +32,32 @@ export default class Router {
 
     start(): void {
         // Реагируем на изменения в адресной строке и вызываем перерисовку
-        window.onpopstate = () => {
+        window.onpopstate = (e) => {
             this._onRoute(window.location.pathname);
         };
+
+        document
+            .body
+            .addEventListener('click', e => {
+                const {target} = e;
+                // @ts-ignore
+                if (target.matches(NAV_A_SELECTOR)) {
+                    e.preventDefault();
+                    // @ts-ignore
+                    this.go(target.pathname);
+                }
+            });
 
         this._onRoute(window.location.pathname);
     }
 
     _onRoute(pathname: string): void {
         const route = this.getRoute(pathname);
+        console.log(pathname, route);
         if (!route) {
             return;
         }
+        console.log(route);
         if (this._currentRoute) {
             this._currentRoute.leave();
         }
@@ -58,7 +74,7 @@ export default class Router {
         this._onRoute(pathname);
     }
 
-    getRoute(pathname: string): Route | undefined  {
+    getRoute(pathname: string): Route | undefined {
         return this.routes.find(route => route.match(pathname));
     }
 }

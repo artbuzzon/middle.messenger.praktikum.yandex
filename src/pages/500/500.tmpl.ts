@@ -4,6 +4,6 @@ export const tmpl =  `
         <span class="error500__message">500 😱</span>
         <span class="error500__message">Мы уже фиксим</span>
     </div>
-    <a href="index.html" class="error500__go-back-btn">Назад к чатам</a>
+    <a data-navigation href="index.html" class="error500__go-back-btn">Назад к чатам</a>
 </div>
 `;
