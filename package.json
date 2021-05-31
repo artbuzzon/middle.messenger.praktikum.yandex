@@ -9,6 +9,7 @@
     "start": "npx webpack serve & node src/utils/server.js",
     "dev": "npx webpack serve",
     "build": "npx webpack build",
+    "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
     "test": "./node_modules/.bin/mocha"
   },
   "repository": {
