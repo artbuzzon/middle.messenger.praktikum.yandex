@@ -2,7 +2,7 @@
   "extension": [
     "ts"
   ],
-  "spec": "test/*.spec.ts",
+  "spec": "test/http.spec.ts",
   "require": [
     "ts-node/register",
     "test/babel-register.js",

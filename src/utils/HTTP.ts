@@ -17,7 +17,7 @@ enum METHODS {
     DELETE = 'DELETE'
 }
 
-const REQUEST_TIME_LIMIT = 200;
+const REQUEST_TIME_LIMIT = 0;
 const REQUEST_START_TIME = 0;
 const BASE_URL = 'https://ya-praktikum.tech/api/v2';
 

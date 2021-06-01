@@ -32,7 +32,7 @@ export default class Router {
 
     start(): void {
         // Реагируем на изменения в адресной строке и вызываем перерисовку
-        window.onpopstate = (e) => {
+        window.onpopstate = () => {
             this._onRoute(window.location.pathname);
         };
 
@@ -53,11 +53,9 @@ export default class Router {
 
     _onRoute(pathname: string): void {
         const route = this.getRoute(pathname);
-        console.log(pathname, route);
         if (!route) {
             return;
         }
-        console.log(route);
         if (this._currentRoute) {
             this._currentRoute.leave();
         }

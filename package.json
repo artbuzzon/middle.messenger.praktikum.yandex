@@ -10,6 +10,7 @@
     "dev": "npx webpack serve",
     "build": "npx webpack build",
     "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
+    "prepare": "husky install",
     "test": "./node_modules/.bin/mocha"
   },
   "repository": {
@@ -62,10 +63,5 @@
     "ts-node": "^9.1.1",
     "typescript": "^4.2.4",
     "xmlhttprequest": "^1.8.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint:all"
-    }
   }
 }

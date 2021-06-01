@@ -13,8 +13,6 @@ import {ProfilePasswordForm} from './components/ProfilePasswordForm';
 import {ProfilePassword} from './pages/ProfilePassword';
 import {ProfileUserDataForm} from './components/ProfileUserDataForm';
 
-console.log(123);
-
 const router = new Router('.root');
 const componentRegistry = new ComponentRegistry();
 

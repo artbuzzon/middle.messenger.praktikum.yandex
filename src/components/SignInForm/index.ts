@@ -67,7 +67,6 @@ export class SignInForm extends Block {
                 });
                 if (isFormValid) {
                     const payload = this.preparePayload();
-                    console.log(payload);
                     authStore.signin(payload).then((status) => {
                         if (status === 200) {
                             window.location.href = '/';

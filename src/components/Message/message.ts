@@ -14,13 +14,10 @@ class Message extends Block {
 
     render() {
         const containerEl = DOMWorker.createEl('div');
-        console.log(this.props);
         if (!this.props.chats) return;
 
         this.props.chats.forEach((message: Options) => {
-            console.log(message);
             const el = new Baki(this.tmpl).compileTemplate(message);
-            console.log(el);
             // if (message.type === 'incoming') {
                 el.children[0].classList.add('dialog__body-msg-incoming');
             // }
