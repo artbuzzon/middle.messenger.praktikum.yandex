@@ -6,7 +6,7 @@
     "node": "12"
   },
   "scripts": {
-    "start": "npx webpack serve & node src/utils/server.js",
+    "start": "node src/utils/server.js",
     "dev": "npx webpack serve",
     "build": "npx webpack build",
     "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",

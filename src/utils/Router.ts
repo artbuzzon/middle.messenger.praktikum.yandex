@@ -33,6 +33,7 @@ export default class Router {
     start(): void {
         // Реагируем на изменения в адресной строке и вызываем перерисовку
         window.onpopstate = () => {
+            console.log(window.location.pathname);
             this._onRoute(window.location.pathname);
         };
 

@@ -13,6 +13,9 @@ module.exports = {
     extensions: ['.ts', '.js', '.json', '.css'],
   },
   devServer: {
+    historyApiFallback: {
+      index: '/dist/index.html'
+    },
     contentBase: path.join(__dirname, '/'),
   },
   module: {

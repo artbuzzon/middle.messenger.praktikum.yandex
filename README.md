@@ -6,6 +6,9 @@ Sprint 3
 
 https://github.com/artbuzzon/middle.messenger.praktikum.yandex/pull/3
 
+Heroku:
+https://heroku-foo-bar.herokuapp.com/
+
 Here you can try it out live:
 https://sad-fermat-4f179e.netlify.app/
 
