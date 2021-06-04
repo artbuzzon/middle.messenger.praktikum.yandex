@@ -10,13 +10,12 @@ module.exports = {
     filename: 'chat.bundle.js',
   },
   resolve: {
-    extensions: ['.ts', '.js', '.json', '.css'],
+    extensions: ['.ts', '.js', '.json', '.css', '.html'],
   },
   devServer: {
     historyApiFallback: {
       index: '/dist/index.html'
     },
-    contentBase: path.join(__dirname, '/'),
   },
   module: {
     rules: [
@@ -50,7 +49,6 @@ module.exports = {
     new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
       template: './static/index.html', //source
-      filename: 'index.html',  //destination
     }),
   ],
 };

@@ -12,10 +12,8 @@ import {ProfileUserData} from './pages/ProfileUserData';
 import {ProfilePasswordForm} from './components/ProfilePasswordForm';
 import {ProfilePassword} from './pages/ProfilePassword';
 import {ProfileUserDataForm} from './components/ProfileUserDataForm';
-
 const router = new Router('.root');
 const componentRegistry = new ComponentRegistry();
-
 componentRegistry
     .add('chat', Chat)
     .add('chat-preview', ChatPreview)
