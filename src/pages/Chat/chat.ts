@@ -1,23 +1,23 @@
-import Block from '../../utils/Block';
-import Baki from '../../utils/Baki';
+import Block from 'utils/Block';
+import Baki from 'utils/Baki';
 import {tmpl as chatTmpl} from './chat.tmpl';
-import '../../styles/mixins.scss';
-import '../../styles/reset.scss';
-import '../../styles/fonts.scss';
-import '../../styles/global.scss';
+import 'styles/mixins.scss';
+import 'styles/reset.scss';
+import 'styles/fonts.scss';
+import 'styles/global.scss';
 import './chat.scss';
-import {authStore} from '../../store/auth.store';
-import DOMWorker from '../../utils/DOMWorker';
-import CreateUserModal from '../../components/CreateUserModal/create-user-modal';
-import {tmpl as createModalTmpl} from '../../components/CreateUserModal/create-user-modal.tmpl';
-import DeleteUserModal from '../../components/DeleteUserModal/delete-user-modal';
-import {tmpl as deleteModalTmpl} from '../../components/DeleteUserModal/delete-user-modal.tmpl';
-import {tmpl as createChatModalTmpl} from '../../components/CreateChatModal/create-chat-modal.tmpl';
-import CreateChatModal from '../../components/CreateChatModal/create-chat-modal';
-import {chatsStore} from '../../store/chat.store';
+import {authStore} from 'store/auth.store';
+import DOMWorker from 'utils/DOMWorker';
+import CreateUserModal from 'components/CreateUserModal/create-user-modal';
+import {tmpl as createModalTmpl} from 'components/CreateUserModal/create-user-modal.tmpl';
+import DeleteUserModal from 'components/DeleteUserModal/delete-user-modal';
+import {tmpl as deleteModalTmpl} from 'components/DeleteUserModal/delete-user-modal.tmpl';
+import {tmpl as createChatModalTmpl} from 'components/CreateChatModal/create-chat-modal.tmpl';
+import CreateChatModal from 'components/CreateChatModal/create-chat-modal';
+import {chatsStore} from 'store/chat.store';
 import {getSocketConnection} from '../../api/SocketApi';
-import Message from '../../components/Message/message';
-import {sanitizeHTML} from '../../utils/utils';
+import Message from 'components/Message/message';
+import {sanitizeHTML} from 'utils/utils';
 
 interface Options {
     [key: string]: any,

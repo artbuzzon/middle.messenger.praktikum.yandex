@@ -1,5 +1,5 @@
-import {BaseAPI} from '../utils/BaseApi';
-import {HTTP} from '../utils/HTTP';
+import {BaseAPI} from 'utils/BaseApi';
+import {HTTP} from 'utils/HTTP';
 
 interface Options {
     [key: string]: any,
@@ -12,7 +12,7 @@ export class ChatsAPI extends BaseAPI {
         return chatAPIInstance.get('');
     }
 
-    createChat(payload: string) {
+    createChat(payload: Options) {
         return chatAPIInstance.post('', {data: payload});
     }
 

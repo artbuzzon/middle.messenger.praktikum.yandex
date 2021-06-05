@@ -1,5 +1,5 @@
-import {BaseAPI} from '../utils/BaseApi';
-import {HTTP} from '../utils/HTTP';
+import {BaseAPI} from 'utils/BaseApi';
+import {HTTP} from 'utils/HTTP';
 
 const authAPIInstance = new HTTP('/auth');
 

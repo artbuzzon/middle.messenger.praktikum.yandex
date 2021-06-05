@@ -12,13 +12,15 @@
     "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
-      "custom-module-type": [
-        "./src/utils/types.d.ts"
-      ]
+      "@/*": ["src"],
+      "utils/*": ["src/utils/*"],
+      "components/*": ["src/components/*"],
+      "pages/*": ["src/pages/*"],
+      "styles/*": ["src/styles/*"],
+      "store/*": ["src/store/*"],
     },
     "typeRoots": [
       "./node_modules/@types",
-      "./typings",
     ]
   },
   "include": [
@@ -27,6 +29,5 @@
   ],
   "exclude": [
     "node_modules",
-//    "src/**/*"
   ]
 }

@@ -1,12 +1,12 @@
-import Block from '../../utils/Block';
-import Baki from '../../utils/Baki';
+import Block from 'utils/Block';
+import Baki from 'utils/Baki';
 import {tmpl} from './profile.tmpl';
-import '../../styles/reset.scss';
-import '../../styles/fonts.scss';
-import '../../styles/global.scss';
+import 'styles/reset.scss';
+import 'styles/fonts.scss';
+import 'styles/global.scss';
 import './profile.scss';
-import {authStore} from '../../store/auth.store';
-import DOMWorker from '../../utils/DOMWorker';
+import {authStore} from 'store/auth.store';
+import DOMWorker from 'utils/DOMWorker';
 
 interface Options {
     [key: string]: any,

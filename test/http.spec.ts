@@ -1,5 +1,5 @@
 import * as sinon from 'sinon';
-import {HTTP} from '../src/utils/HTTP';
+import {HTTP} from 'utils/HTTP';
 import * as chai from 'chai';
 
 chai.should();

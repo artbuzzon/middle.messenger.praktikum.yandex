@@ -1,6 +1,6 @@
 import './chat-attach-drowdown';
 import './chat-attach-dropdown.scss';
-import DOMWorker from '../../utils/DOMWorker';
+import DOMWorker from 'utils/DOMWorker';
 import {tmpl} from './chat-attach-dropdown.tmpl';
 import ChatAttachDropdown from './chat-attach-drowdown';
 

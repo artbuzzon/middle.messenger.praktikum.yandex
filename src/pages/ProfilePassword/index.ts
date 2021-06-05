@@ -1,10 +1,10 @@
-import '../../styles/reset.scss';
-import '../../styles/fonts.scss';
-import '../../styles/global.scss';
+import 'styles/reset.scss';
+import 'styles/fonts.scss';
+import 'styles/global.scss';
 import './profile-password.scss';
 import {tmpl} from './profile-password.tmpl';
-import Block from '../../utils/Block';
-import Baki from '../../utils/Baki';
+import Block from 'utils/Block';
+import Baki from 'utils/Baki';
 
 interface Options {
     [key: string]: any,

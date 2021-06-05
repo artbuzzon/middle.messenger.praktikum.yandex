@@ -11,6 +11,14 @@ module.exports = {
   },
   resolve: {
     extensions: ['.ts', '.js', '.json', '.css', '.html'],
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+      'utils':  path.resolve(__dirname, 'src/utils'),
+      'components': path.resolve(__dirname, 'src/components'),
+      'pages': path.resolve(__dirname, 'src/pages'),
+      'styles': path.resolve(__dirname, 'src/styles'),
+      'store': path.resolve(__dirname, 'src/store'),
+    },
   },
   devServer: {
     historyApiFallback: {

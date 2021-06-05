@@ -1,11 +1,11 @@
-import Block from '../../utils/Block';
+import Block from 'utils/Block';
 import {tmpl as InputTmpl} from '../Input/input.tmpl';
-import {ERROR_MSGS, INPUT_TYPES} from '../../utils/consts';
-import {getUuid} from '../../utils/utils';
-import DOMWorker from '../../utils/DOMWorker';
+import {ERROR_MSGS, INPUT_TYPES} from 'utils/consts';
+import {getUuid} from 'utils/utils';
+import DOMWorker from 'utils/DOMWorker';
 import Input from '../Input/input';
 import {tmpl} from './signin-form.tmpl';
-import {authStore} from '../../store/auth.store';
+import {authStore} from 'store/auth.store';
 
 interface Options {
     [key: string]: any,

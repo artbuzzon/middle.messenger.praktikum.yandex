@@ -1,7 +1,7 @@
-import Block from '../../utils/Block';
+import Block from 'utils/Block';
 import {tmpl} from './message.tmpl';
-import DOMWorker from '../../utils/DOMWorker';
-import Baki from '../../utils/Baki';
+import DOMWorker from 'utils/DOMWorker';
+import Baki from 'utils/Baki';
 
 interface Options {
     [key: string]: any,

@@ -1,5 +1,5 @@
 import {expect} from 'chai';
-import Baki from '../src/utils/Baki';
+import Baki from 'utils/Baki';
 
 describe('test template engine', () => {
     const baki = new Baki('<div>foo</div>');
