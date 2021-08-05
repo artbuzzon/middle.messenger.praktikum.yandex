@@ -1,8 +1,8 @@
-import Block from '../../utils/Block';
-import Baki from '../../utils/Baki';
+import Block from 'utils/Block';
+import Baki from 'utils/Baki';
 import './create-user-modal.scss';
-import DOMWorker from '../../utils/DOMWorker';
-import {chatsStore} from '../../store/chat.store';
+import DOMWorker from 'utils/DOMWorker';
+import {chatsStore} from 'store/chat.store';
 
 interface Options {
     [key: string]: any,

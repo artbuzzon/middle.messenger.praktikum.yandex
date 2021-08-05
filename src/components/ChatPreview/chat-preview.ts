@@ -1,9 +1,9 @@
-import Block from '../../utils/Block';
-import Baki from '../../utils/Baki';
+import Block from 'utils/Block';
+import Baki from 'utils/Baki';
 import './chat-preview';
 import {tmpl} from './chat-preview.tmpl';
-import DOMWorker from '../../utils/DOMWorker';
-import {chatsStore} from '../../store/chat.store';
+import DOMWorker from 'utils/DOMWorker';
+import {chatsStore} from 'store/chat.store';
 
 
 class ChatPreview extends Block {

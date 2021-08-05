@@ -1,5 +1,5 @@
-import {BaseAPI} from '../utils/BaseApi';
-import {HTTP} from '../utils/HTTP';
+import {BaseAPI} from 'utils/BaseApi';
+import {HTTP} from 'utils/HTTP';
 
 interface Options {
     [key: string]: any,

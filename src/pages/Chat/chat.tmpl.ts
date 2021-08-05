@@ -3,7 +3,7 @@ export const tmpl = `
     <div class="sidebar">
         <div class="sidebar__head">
             <button data-name="create-chat-btn">Создать чат</button>
-            <a href="profile" class="sidebar__profile-btn">
+            <a data-navigation href="profile" class="sidebar__profile-btn">
                 Профиль
             </a>
             <div class="sidebar__search-container">

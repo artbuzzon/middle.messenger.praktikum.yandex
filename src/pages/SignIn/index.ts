@@ -1,12 +1,12 @@
-import '../../styles/reset.scss';
-import '../../styles/fonts.scss';
-import '../../styles/global.scss';
+import 'styles/reset.scss';
+import 'styles/fonts.scss';
+import 'styles/global.scss';
 import './signin.scss';
-import '../../components/Input/input.scss';
-import Block from '../../utils/Block';
+import 'components/Input/input.scss';
+import Block from 'utils/Block';
 import {tmpl} from './signin.tmpl';
-import Baki from '../../utils/Baki';
-import DOMWorker from '../../utils/DOMWorker';
+import Baki from 'utils/Baki';
+import DOMWorker from 'utils/DOMWorker';
 
 interface Options {
     [key: string]: any,

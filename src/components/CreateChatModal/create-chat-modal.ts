@@ -1,8 +1,8 @@
-import Block from '../../utils/Block';
-import Baki from '../../utils/Baki';
+import Block from 'utils/Block';
+import Baki from 'utils/Baki';
 import './create-chat-modal.scss';
-import DOMWorker from '../../utils/DOMWorker';
-import {chatsStore} from '../../store/chat.store';
+import DOMWorker from 'utils/DOMWorker';
+import {chatsStore} from 'store/chat.store';
 
 interface Options {
     [key: string]: any,
@@ -34,9 +34,8 @@ class CreateChatModal extends Block {
 
             if (nameEl === 'create-chat-btn-modal') {
                 const input = DOMWorker.getEl('[data-name="create-chat-input"]') as HTMLInputElement;
-                console.log(input.value);
                 const payload = {'title': input.value};
-                chatsStore.createChat(JSON.stringify(payload));
+                chatsStore.createChat(payload);
             }
 
 

@@ -20,7 +20,7 @@ export const chatsStore = {
         });
     },
 
-    createChat(payload: string): Promise<number> {
+    createChat(payload: Options): Promise<number> {
         return new ChatsAPI().createChat(payload).then((xhr) => xhr.status)
             .catch((e) => {
                 throw new Error(e);
